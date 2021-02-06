@@ -9,3 +9,11 @@ class player:
         self.location = 'b2'
         self.game_over = False
 myPlayer = player()
+
+
+class enemy:
+    def __init__(self):
+        self.name = ''
+        self.hp = 0
+        self.mp = 0
+        self.status_effects = []
