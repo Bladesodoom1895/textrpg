@@ -2,7 +2,8 @@
 # Dalas Neff :D
 
 import cmd, textwrap, sys, os, time, random, re
-import gamefunction, gameinteraction, playerenemyclasses, zonemap
+import gamefunction, gameinteraction, playerenemyclasses
+import zonemap
 
 ##### Title Screen #####
 def title_screen_selections():
@@ -60,14 +61,7 @@ def help_menu():
 |  |  |  |  | d4
 -------------
 """
-ZONENAME = ''
-DESCRIPTION = 'description'
-EXAMINATION = 'examine'
-SOLVED = False
-UP = 'up', 'north'
-DOWN = 'down', 'south'
-LEFT = 'left', 'west'
-RIGHT = 'right', 'east'
+
 
 solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
                 'b1': False, 'b2': False, 'b3': False, 'b4': False,

@@ -1,3 +1,12 @@
+ZONENAME = ''
+DESCRIPTION = 'description'
+EXAMINATION = 'examine'
+SOLVED = False
+UP = 'up', 'north'
+DOWN = 'down', 'south'
+LEFT = 'left', 'west'
+RIGHT = 'right', 'east'
+
 zonemap = {
         'a1': {
             ZONENAME: "",
@@ -54,10 +63,10 @@ zonemap = {
             DESCRIPTION: "This is your home.",
             EXAMINATION: "You look around at your wonderful home.",
             SOLVED: False,
-            UP: ['a2', 'north', 'up', re.IGNORECASE],
-            DOWN: ['c2', 'south', 'down', re.IGNORECASE],
-            LEFT: ['b1', 'west', 'left', re.IGNORECASE],
-            RIGHT: ['b3', 'east', 'right', re.IGNORECASE],
+            UP: ['a2', 'north', 'up'],
+            DOWN: ['c2', 'south', 'down'],
+            LEFT: ['b1', 'west', 'left'],
+            RIGHT: ['b3', 'east', 'right'],
         },
         'b3': {
             ZONENAME: "",
