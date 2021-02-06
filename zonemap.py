@@ -10,7 +10,7 @@ RIGHT = 'right', 'east'
 zonemap = {
         'a1': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to A1",
             EXAMINATION: "",
             SOLVED: False,
             UP: '',
@@ -20,7 +20,7 @@ zonemap = {
         },
         'a2': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to A2",
             EXAMINATION: "",
             SOLVED: False,
             UP: '',
@@ -30,7 +30,7 @@ zonemap = {
         },
         'a3': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to A3",
             EXAMINATION: "",
             SOLVED: False,
             UP: '',
@@ -40,7 +40,7 @@ zonemap = {
         },
         'a4': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to A4",
             EXAMINATION: "",
             SOLVED: False,
             UP: '',
@@ -50,7 +50,7 @@ zonemap = {
         },
         'b1': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to B1",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'a1',
@@ -70,7 +70,7 @@ zonemap = {
         },
         'b3': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to B3",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'a3',
@@ -80,7 +80,7 @@ zonemap = {
         },
         'b4': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to B4",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'a4',
@@ -90,7 +90,7 @@ zonemap = {
         },
         'c1': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to C1",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'b1',
@@ -100,7 +100,7 @@ zonemap = {
         },
         'c2': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to C2",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'b2',
@@ -110,7 +110,7 @@ zonemap = {
         },
         'c3': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to C3",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'b3',
@@ -120,7 +120,7 @@ zonemap = {
         },
         'c4': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to C4",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'b4',
@@ -130,7 +130,7 @@ zonemap = {
         },
         'd1': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to D1",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'c1',
@@ -140,7 +140,7 @@ zonemap = {
         },
         'd2': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to D2",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'c2',
@@ -150,7 +150,7 @@ zonemap = {
         },
         'd3': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to D3",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'c3',
@@ -160,7 +160,7 @@ zonemap = {
         },
         'd4': {
             ZONENAME: "",
-            DESCRIPTION: "",
+            DESCRIPTION: "Welcome to D4",
             EXAMINATION: "",
             SOLVED: False,
             UP: 'c4',
