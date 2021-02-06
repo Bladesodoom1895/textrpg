@@ -3,10 +3,11 @@
 import sys
 from playerenemyclasses import *
 from zonemap import *
+from gamefunction import *
 
 def print_location():
     print('\n' + ('#' * (4 + len(myPlayer.location))))
-    print('# ' + myPlayer.location[0].upper() + ' #')
+    print('# ' + myPlayer.location.upper() + ' #')
     print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
     print('\n' + ('#' * (4 + len(myPlayer.location))))
 
@@ -23,12 +24,12 @@ def prompt():
     if action.lower() == 'quit':
         sys.exit()
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
-        player_move(action.lower())
+        player_move()
     elif action.lower() in ['examine', 'look', 'inspect', 'interact']:
-        player_examine(action.lower())
+        player_examine()
 
 
-def player_move(action):
+def player_move():
     ask = "where would you like to move to?\n"
     dest = input(ask)
     if dest in ['up', 'north']:
@@ -47,11 +48,11 @@ def player_move(action):
 
 def movement_handler(destination):
     print("\n" + "You have moved to " + destination[0] + ".")
-    myPlayer.location = destination
-    print_location()
+    myPlayer.location = destination[0]
+    main_game_loop()
 
 
-def player_examine(action):
+def player_examine():
     if zonemap[myPlayer.location][SOLVED]:
         print("You have already exhausted the zone.")
         prompt()
