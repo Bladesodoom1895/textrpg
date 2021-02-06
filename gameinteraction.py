@@ -1,7 +1,12 @@
 #### Game Interactivity #####
+
+import sys
+from playerenemyclasses import *
+from zonemap import *
+
 def print_location():
     print('\n' + ('#' * (4 + len(myPlayer.location))))
-    print('# ' + myPlayer.location.upper() + ' #')
+    print('# ' + myPlayer.location[0].upper() + ' #')
     print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
     print('\n' + ('#' * (4 + len(myPlayer.location))))
 
@@ -28,7 +33,6 @@ def player_move(action):
     dest = input(ask)
     if dest in ['up', 'north']:
         destination = zonemap[myPlayer.location][UP]
-        print(destination)
         movement_handler(destination)
     elif dest in ['down', 'south']:
         destination = zonemap[myPlayer.location][DOWN]
@@ -42,7 +46,7 @@ def player_move(action):
 
 
 def movement_handler(destination):
-    print("\n" + "You have moved to the " + destination + ".")
+    print("\n" + "You have moved to " + destination[0] + ".")
     myPlayer.location = destination
     print_location()
 
@@ -50,6 +54,7 @@ def movement_handler(destination):
 def player_examine(action):
     if zonemap[myPlayer.location][SOLVED]:
         print("You have already exhausted the zone.")
+        prompt()
     else:
         print('You can trigger a puzzle here.')
         print('Would you like to solve the puzzle?')

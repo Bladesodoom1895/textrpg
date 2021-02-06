@@ -1,4 +1,10 @@
 #### Game Functionality #####
+
+import os, sys, time
+from playerenemyclasses import *
+from gameinteraction import *
+from zonemap import *
+
 def main_game_loop():
     while myPlayer.game_over is False:
         print_location()
