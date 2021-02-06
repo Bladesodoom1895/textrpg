@@ -1,9 +1,11 @@
 # Warriors Text RPG
 # Dalas Neff :D
 
-import cmd, textwrap, sys, os, time, random, re
-import gamefunction, gameinteraction, playerenemyclasses
-import zonemap
+import cmd, textwrap, sys, os, time, random
+from gamefunction import *
+from gameinteraction import *
+from zonemap import *
+from playerenemyclasses import *
 
 ##### Title Screen #####
 def title_screen_selections():
@@ -47,7 +49,6 @@ def help_menu():
     title_screen_selections()
 
 
-
 ##### Map #####
 """
  a1 a2 a3 a4 x = player home
@@ -62,12 +63,10 @@ def help_menu():
 -------------
 """
 
-
 solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
                 'b1': False, 'b2': False, 'b3': False, 'b4': False,
                 'c1': False, 'c2': False, 'c3': False, 'c4': False,
                 'd1': False, 'd2': False, 'd3': False, 'd4': False,
                 }
-
 
 title_screen()
