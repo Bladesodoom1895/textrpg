@@ -30,19 +30,37 @@ def prompt():
 
 def player_move():
     ask = "where would you like to move to?\n"
+    options = ['down', 'south', 'left', 'west', 'right', 'east', 'up', 'north']
+    print(options)
     dest = input(ask)
     if dest in ['up', 'north']:
         destination = zonemap[myPlayer.location][UP]
-        movement_handler(destination)
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
     elif dest in ['down', 'south']:
         destination = zonemap[myPlayer.location][DOWN]
-        movement_handler(destination)
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
     elif dest in ['left', 'west']:
         destination = zonemap[myPlayer.location][LEFT]
-        movement_handler(destination)
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
     elif dest in ['right', 'east']:
         destination = zonemap[myPlayer.location][RIGHT]
-        movement_handler(destination)
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
 
 
 def movement_handler(destination):
@@ -63,8 +81,10 @@ def player_examine():
         answer = input("> ")
         if answer == 'yes':
             puzzles()
-        else:
+        elif answer =='no':
             prompt()
+        else:
+            print('That is not valid input')
 
 
 #### Game Functionality #####
@@ -156,4 +176,19 @@ def setup_game():
 
 
 def puzzles():
-    pass
+    answer = zonemap[myPlayer.location][ANSWER]
+    print(zonemap[myPlayer.location]["PUZZLE"])
+    time.sleep(3)
+    ask = 'What is your answer.\n'
+    for char in ask:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.03)
+    player_ans = input('> ')
+
+    if player_ans.lower() == answer:
+        print("Congratulations that is correct!")
+        zonemap[myPlayer.location][SOLVED] = True
+    else:
+        print('That is incorrect.')
+        player_ans = input('> ')
