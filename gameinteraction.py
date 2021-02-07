@@ -191,7 +191,7 @@ def puzzles():
 
     if player_ans.lower() == zonemap[myPlayer.location][ANSWER]:
         print("Congratulations that is correct!")
-        zonemap = zonemap[myPlayer.location][SOLVED] = True
+        zonemap[myPlayer.location][SOLVED] = True
         win_condition(zonemap)
     else:
         print('That is incorrect.')
