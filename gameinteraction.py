@@ -46,12 +46,13 @@ def player_move():
 
 
 def movement_handler(destination):
-    print("\n" + "You have moved to " + destination[0] + ".")
-    myPlayer.location = destination[0]
+    print("\n" + "You have moved to " + destination + ".")
+    myPlayer.location = destination
     main_game_loop()
 
 
 def player_examine():
+    print(zonemap[myPlayer.location][EXAMINE])
     if zonemap[myPlayer.location][SOLVED]:
         print("You have already exhausted the zone.")
         prompt()
@@ -61,7 +62,7 @@ def player_examine():
         print('(yes or no)')
         answer = input("> ")
         if answer == 'yes':
-            pass #print puzzle function
+            puzzles()
         else:
             prompt()
 
@@ -152,3 +153,7 @@ def setup_game():
     print("# Let's Start Now #")
     print('###################')
     main_game_loop()
+
+
+def puzzles():
+    pass

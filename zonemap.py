@@ -13,14 +13,14 @@
 """
 
 solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
-                'b1': False, 'b2': False, 'b3': False, 'b4': False,
+                'b1': False, 'b2': True, 'b3': False, 'b4': False,
                 'c1': False, 'c2': False, 'c3': False, 'c4': False,
                 'd1': False, 'd2': False, 'd3': False, 'd4': False,
                 }
 
 ZONENAME = ''
 DESCRIPTION = 'description'
-EXAMINATION = 'examine'
+EXAMINE = 'examine'
 SOLVED = False
 UP = 'up', 'north'
 DOWN = 'down', 'south'
@@ -31,7 +31,7 @@ zonemap = {
         'a1': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to A1",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: '',
             DOWN: 'b1',
@@ -41,7 +41,7 @@ zonemap = {
         'a2': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to A2",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: '',
             DOWN: 'b3',
@@ -51,7 +51,7 @@ zonemap = {
         'a3': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to A3",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: '',
             DOWN: 'b3',
@@ -61,7 +61,7 @@ zonemap = {
         'a4': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to A4",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: '',
             DOWN: 'b4',
@@ -71,7 +71,7 @@ zonemap = {
         'b1': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to B1",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'a1',
             DOWN: 'c1',
@@ -81,17 +81,17 @@ zonemap = {
         'b2': {
             ZONENAME: "",
             DESCRIPTION: "This is your home.",
-            EXAMINATION: "You look around at your wonderful home.",
-            SOLVED: False,
-            UP: ['a2', 'north', 'up'],
-            DOWN: ['c2', 'south', 'down'],
-            LEFT: ['b1', 'west', 'left'],
-            RIGHT: ['b3', 'east', 'right'],
+            EXAMINE: "You look around at your wonderful home.",
+            SOLVED: True,
+            UP: 'a2',
+            DOWN: 'c2',
+            LEFT: 'b1',
+            RIGHT: 'b3'
         },
         'b3': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to B3",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'a3',
             DOWN: 'c3',
@@ -101,7 +101,7 @@ zonemap = {
         'b4': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to B4",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'a4',
             DOWN: 'c4',
@@ -111,7 +111,7 @@ zonemap = {
         'c1': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to C1",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'b1',
             DOWN: 'd1',
@@ -121,7 +121,7 @@ zonemap = {
         'c2': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to C2",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'b2',
             DOWN: 'd2',
@@ -131,7 +131,7 @@ zonemap = {
         'c3': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to C3",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'b3',
             DOWN: 'd3',
@@ -141,7 +141,7 @@ zonemap = {
         'c4': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to C4",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'b4',
             DOWN: 'd4',
@@ -151,7 +151,7 @@ zonemap = {
         'd1': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to D1",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'c1',
             DOWN: '',
@@ -161,7 +161,7 @@ zonemap = {
         'd2': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to D2",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'c2',
             DOWN: '',
@@ -171,7 +171,7 @@ zonemap = {
         'd3': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to D3",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'c3',
             DOWN: '',
@@ -181,7 +181,7 @@ zonemap = {
         'd4': {
             ZONENAME: "",
             DESCRIPTION: "Welcome to D4",
-            EXAMINATION: "",
+            EXAMINE: "Nothing yet",
             SOLVED: False,
             UP: 'c4',
             DOWN: '',
