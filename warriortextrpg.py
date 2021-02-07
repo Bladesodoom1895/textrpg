@@ -39,7 +39,7 @@ def help_menu():
     print('############################')
     print('Welcome to Warriors Text RPG')
     print('############################')
-    print('- Use up, down, left, right to move')
+    print('- Use  the words up, down, left, right to move')
     print('- Type your commands to do them')
     print('- Use "look" to inspect something')
     print('- Good luck and have fun!')

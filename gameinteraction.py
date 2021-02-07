@@ -1,6 +1,6 @@
 #### Game Interactivity #####
 
-import sys, os, time
+import sys, os, time, re
 from playerenemyclasses import *
 from zonemap import *
 
@@ -92,6 +92,10 @@ def main_game_loop():
     while myPlayer.game_over is False:
         print_location()
         prompt()
+    else:
+        time.sleep(5)
+        os.system('cls')
+        quit()
 
 
 def setup_game():
@@ -176,9 +180,8 @@ def setup_game():
 
 
 def puzzles():
-    answer = zonemap[myPlayer.location][ANSWER]
     print(zonemap[myPlayer.location]["PUZZLE"])
-    time.sleep(3)
+    time.sleep(2)
     ask = 'What is your answer.\n'
     for char in ask:
         sys.stdout.write(char)
@@ -186,9 +189,24 @@ def puzzles():
         time.sleep(0.03)
     player_ans = input('> ')
 
-    if player_ans.lower() == answer:
+    if player_ans.lower() == zonemap[myPlayer.location][ANSWER]:
         print("Congratulations that is correct!")
-        zonemap[myPlayer.location][SOLVED] = True
+        zonemap = zonemap[myPlayer.location][SOLVED] = True
+        win_condition(zonemap)
     else:
         print('That is incorrect.')
         player_ans = input('> ')
+
+
+def win_condition(zonemap):
+    all_solved = True
+    for value in zonemap[SOLVED].values():
+        if value == False:
+            all_solved = False
+
+    if all_solved == True:
+        print('Congratulations you have won!')
+        myPlayer.game_over == True
+        main_game_loop()
+    else:
+        main_game_loop()
