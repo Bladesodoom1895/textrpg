@@ -127,6 +127,7 @@ def setup_game():
         myPlayer.job = player_job
         print('You are now a ' + player_job + '!\n')
     while player_job.lower() not in valid_jobs:
+        print('That is not a valid job!')
         player_job = input('> ')
         if player_job.lower() in valid_jobs:
             myPlayer.job = player_job
@@ -191,7 +192,7 @@ def puzzles():
 
     if player_ans.lower() == zonemap[myPlayer.location][ANSWER]:
         print("Congratulations that is correct!")
-        zonemap = zonemap[myPlayer.location][SOLVED] = True
+        zonemap[myPlayer.location][SOLVED] = True
         win_condition(zonemap)
     else:
         print('That is incorrect.')
