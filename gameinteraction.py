@@ -71,7 +71,7 @@ def movement_handler(destination):
 
 def player_examine():
     print(zonemap[myPlayer.location][EXAMINE])
-    if zonemap[myPlayer.location][SOLVED]:
+    if zonemap[myPlayer.location][SOLVED] == True:
         print("You have already exhausted the zone.")
         prompt()
     else:
@@ -80,7 +80,7 @@ def player_examine():
         print('(yes or no)')
         answer = input("> ")
         if answer == 'yes':
-            puzzles()
+            riddles()
         elif answer =='no':
             prompt()
         else:
@@ -180,8 +180,8 @@ def setup_game():
     main_game_loop()
 
 
-def puzzles():
-    print(zonemap[myPlayer.location]["PUZZLE"])
+def riddles():
+    print(zonemap[myPlayer.location][RIDDLE])
     time.sleep(2)
     ask = 'What is your answer.\n'
     for char in ask:
