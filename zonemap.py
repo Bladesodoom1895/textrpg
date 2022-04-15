@@ -12,11 +12,11 @@
 -------------
 """
 
-ZONENAME = ''
+ZONENAME = 'name'
 DESCRIPTION = 'description'
 EXAMINE = 'examine'
-RIDDLE = ''
-ANSWER = ''
+RIDDLE = 'riddle'
+ANSWER = 'answer'
 SOLVED = False
 UP = 'up', 'north'
 DOWN = 'down', 'south'

@@ -181,6 +181,7 @@ def setup_game():
 
 
 def riddles():
+    print('testing')
     print(zonemap[myPlayer.location][RIDDLE])
     time.sleep(2)
     ask = 'What is your answer.\n'
