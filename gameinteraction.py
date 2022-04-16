@@ -1,9 +1,60 @@
-#### Game Interactivity #####
+# Warriors Text RPG
+# Dalas Neff :D
 
-import sys, os, time, re
+import sys, os, time, re, cmd, textwrap, random
 from playerenemyclasses import *
 from zonemap import *
+from warriortextrpg import *
+# Warriors Text RPG
+# Dalas Neff :D
 
+
+##### Title Screen #####
+def title_screen_selections():
+    option = str(input("> "))
+    if option.lower() == ("play"):
+        setup_game()
+    elif option.lower() == ("help"):
+        help_menu()
+    elif option.lower() == ("quit"):
+        sys.exit()
+    while option.lower() not in ['play', 'help', 'quit']:
+        print("Please enter a valid command.")
+        option = str(input("> "))
+        if option.lower() == ("play"):
+            setup_game()
+        elif option.lower() == ("help"):
+            help_menu()
+        elif option.lower() == ("quit"):
+            sys.exit()
+
+
+def title_screen():
+    os.system('cls')
+    print('############################')
+    print('Welcome to Warriors Text RPG')
+    print('############################')
+    print('          - Play -          ')
+    print('          - Help -          ')
+    print('          - Quit -          ')
+    title_screen_selections()
+
+
+def help_menu():
+    print('############################')
+    print('Welcome to Warriors Text RPG')
+    print('############################')
+    print('- Use  the words up, down, left, right to move')
+    print('- Type your commands to do them')
+    print('- Use "look" to inspect something')
+    print('- Good luck and have fun!')
+    title_screen_selections()
+
+
+title_screen()
+
+
+#### Game Interactivity #####
 def print_location():
     print('\n' + ('#' * (4 + len(myPlayer.location))))
     print('# ' + myPlayer.location.upper() + ' #')
@@ -202,13 +253,13 @@ def riddles():
 
 def win_condition(zonemap):
     all_solved = True
-    for value in zonemap[SOLVED]:
-        if value == False:
+    for value in zonemap.values():
+        if value[SOLVED] == False:
             all_solved = False
 
     if all_solved == True:
         print('Congratulations you have won!')
         myPlayer.game_over == True
-        main_game_loop()
+        title_screen()
     else:
         main_game_loop()
