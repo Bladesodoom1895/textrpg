@@ -17,7 +17,7 @@ DESCRIPTION = 'description'
 EXAMINE = 'examine'
 RIDDLE = 'riddle'
 ANSWER = 'answer'
-SOLVED = False
+SOLVED = True
 UP = 'up', 'north'
 DOWN = 'down', 'south'
 LEFT = 'left', 'west'
@@ -111,7 +111,7 @@ zonemap = {
             DESCRIPTION: "Welcome to B4",
             EXAMINE: "Nothing yet",
             RIDDLE: 'How many oranges grow on a tree?',
-            ANSWER: 'all oranges grow on trees',
+            ANSWER: 'all oranges',
             SOLVED: False,
             UP: 'a4',
             DOWN: 'c4',

@@ -202,7 +202,7 @@ def riddles():
 
 def win_condition(zonemap):
     all_solved = True
-    for value in zonemap[SOLVED].values():
+    for value in zonemap[SOLVED]:
         if value == False:
             all_solved = False
 
