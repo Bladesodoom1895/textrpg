@@ -4,138 +4,8 @@
 import sys, os, time, re, cmd, textwrap, random
 from playerenemyclasses import *
 from zonemap import *
-from warriortextrpg import *
 # Warriors Text RPG
 # Dalas Neff :D
-
-
-##### Title Screen #####
-def title_screen_selections():
-    option = str(input("> "))
-    if option.lower() == ("play"):
-        setup_game()
-    elif option.lower() == ("help"):
-        help_menu()
-    elif option.lower() == ("quit"):
-        sys.exit()
-    while option.lower() not in ['play', 'help', 'quit']:
-        print("Please enter a valid command.")
-        option = str(input("> "))
-        if option.lower() == ("play"):
-            setup_game()
-        elif option.lower() == ("help"):
-            help_menu()
-        elif option.lower() == ("quit"):
-            sys.exit()
-
-
-def title_screen():
-    os.system('cls')
-    print('############################')
-    print('Welcome to Warriors Text RPG')
-    print('############################')
-    print('          - Play -          ')
-    print('          - Help -          ')
-    print('          - Quit -          ')
-    title_screen_selections()
-
-
-def help_menu():
-    print('############################')
-    print('Welcome to Warriors Text RPG')
-    print('############################')
-    print('- Use  the words up, down, left, right to move')
-    print('- Type your commands to do them')
-    print('- Use "look" to inspect something')
-    print('- Good luck and have fun!')
-    title_screen_selections()
-
-
-title_screen()
-
-
-#### Game Interactivity #####
-def print_location():
-    print('\n' + ('#' * (4 + len(myPlayer.location))))
-    print('# ' + myPlayer.location.upper() + ' #')
-    print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
-    print('\n' + ('#' * (4 + len(myPlayer.location))))
-
-
-def prompt():
-    print('\n' + "==========================")
-    print("What would you like to do?")
-    acceptable_actions = {'move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look'}
-    print(acceptable_actions)
-    action = str(input("> "))
-    while action.lower() not in acceptable_actions:
-        print("Unknown action, try again.\n")
-        action = str(input("> "))
-    if action.lower() == 'quit':
-        sys.exit()
-    elif action.lower() in ['move', 'go', 'travel', 'walk']:
-        player_move()
-    elif action.lower() in ['examine', 'look', 'inspect', 'interact']:
-        player_examine()
-
-
-def player_move():
-    ask = "where would you like to move to?\n"
-    options = ['down', 'south', 'left', 'west', 'right', 'east', 'up', 'north']
-    print(options)
-    dest = input(ask)
-    if dest in ['up', 'north']:
-        destination = zonemap[myPlayer.location][UP]
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-    elif dest in ['down', 'south']:
-        destination = zonemap[myPlayer.location][DOWN]
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-    elif dest in ['left', 'west']:
-        destination = zonemap[myPlayer.location][LEFT]
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-    elif dest in ['right', 'east']:
-        destination = zonemap[myPlayer.location][RIGHT]
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-
-
-def movement_handler(destination):
-    print("\n" + "You have moved to " + destination + ".")
-    myPlayer.location = destination
-    main_game_loop()
-
-
-def player_examine():
-    print(zonemap[myPlayer.location][EXAMINE])
-    if zonemap[myPlayer.location][SOLVED] == True:
-        print("You have already exhausted the zone.")
-        prompt()
-    else:
-        print('You can trigger a puzzle here.')
-        print('Would you like to solve the puzzle?')
-        print('(yes or no)')
-        answer = input("> ")
-        if answer == 'yes':
-            riddles()
-        elif answer =='no':
-            prompt()
-        else:
-            print('That is not valid input')
 
 
 #### Game Functionality #####
@@ -231,6 +101,132 @@ def setup_game():
     main_game_loop()
 
 
+##### Title Screen #####
+def title_screen_selections():
+    option = str(input("> "))
+    if option.lower() == ("play"):
+        setup_game()
+    elif option.lower() == ("help"):
+        help_menu()
+    elif option.lower() == ("quit"):
+        sys.exit()
+    while option.lower() not in ['play', 'help', 'quit']:
+        print("Please enter a valid command.")
+        option = str(input("> "))
+        if option.lower() == ("play"):
+            setup_game()
+        elif option.lower() == ("help"):
+            help_menu()
+        elif option.lower() == ("quit"):
+            sys.exit()
+
+
+def title_screen():
+    os.system('cls')
+    print('############################')
+    print('Welcome to Warriors Text RPG')
+    print('############################')
+    print('          - Play -          ')
+    print('          - Help -          ')
+    print('          - Quit -          ')
+    title_screen_selections()
+
+
+def help_menu():
+    print('############################')
+    print('Welcome to Warriors Text RPG')
+    print('############################')
+    print('- Use  the words up, down, left, right to move')
+    print('- Type your commands to do them')
+    print('- Use "look" to inspect something')
+    print('- Good luck and have fun!')
+    title_screen_selections()
+
+
+#### Game Interactivity #####
+def print_location():
+    print('\n' + ('#' * (4 + len(myPlayer.location))))
+    print('# ' + myPlayer.location.upper() + ' #')
+    print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
+    print('\n' + ('#' * (4 + len(myPlayer.location))))
+
+
+def prompt():
+    print('\n' + "==========================")
+    print("What would you like to do?")
+    acceptable_actions = {'move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look'}
+    print(acceptable_actions)
+    action = str(input("> "))
+    while action.lower() not in acceptable_actions:
+        print("Unknown action, try again.\n")
+        action = str(input("> "))
+    if action.lower() == 'quit':
+        sys.exit()
+    elif action.lower() in ['move', 'go', 'travel', 'walk']:
+        player_move()
+    elif action.lower() in ['examine', 'look', 'inspect', 'interact']:
+        player_examine()
+
+
+def player_move():
+    ask = "where would you like to move to?\n"
+    options = ['down', 'south', 'left', 'west', 'right', 'east', 'up', 'north']
+    print(options)
+    dest = input(ask)
+    if dest in ['up', 'north']:
+        destination = zonemap[myPlayer.location][UP]
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
+    elif dest in ['down', 'south']:
+        destination = zonemap[myPlayer.location][DOWN]
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
+    elif dest in ['left', 'west']:
+        destination = zonemap[myPlayer.location][LEFT]
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
+    elif dest in ['right', 'east']:
+        destination = zonemap[myPlayer.location][RIGHT]
+        if destination == '':
+            print("Sorry, You can't move there.")
+            dest = input(ask)
+        else:
+            movement_handler(destination)
+
+
+def movement_handler(destination):
+    print("\n" + "You have moved to " + destination + ".")
+    myPlayer.location = destination
+    main_game_loop()
+
+
+def player_examine():
+    print(zonemap[myPlayer.location][EXAMINE])
+    if zonemap[myPlayer.location][SOLVED] == True:
+        print("You have already exhausted the zone.")
+        prompt()
+    else:
+        print('You can trigger a puzzle here.')
+        print('Would you like to solve the puzzle?')
+        print('(yes or no)')
+        answer = input("> ")
+        if answer == 'yes':
+            riddles()
+        elif answer =='no':
+            prompt()
+        else:
+            print('That is not valid input')
+
+
 def riddles():
     print('testing')
     print(zonemap[myPlayer.location][RIDDLE])
@@ -259,7 +255,10 @@ def win_condition(zonemap):
 
     if all_solved == True:
         print('Congratulations you have won!')
+        time.sleep(10)
         myPlayer.game_over == True
         title_screen()
     else:
         main_game_loop()
+
+title_screen()
