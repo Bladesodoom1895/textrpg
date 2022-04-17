@@ -9,6 +9,7 @@ I am a fairly new programmer with big ambitions.
 
 To be able to play the game you need to have Python 3.10.4
 https://www.python.org/downloads/
+Can just use the default install and add it to the path variable.
 
 Then download the zip file and extract it wherever you would like it.
 All you have to do after that is run the gameinteraction.py file
