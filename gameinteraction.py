@@ -228,7 +228,6 @@ def player_examine():
 
 
 def riddles():
-    print('testing')
     print(zonemap[myPlayer.location][RIDDLE])
     time.sleep(2)
     ask = 'What is your answer.\n'
@@ -243,7 +242,7 @@ def riddles():
         zonemap[myPlayer.location][SOLVED] = True
         win_condition(zonemap)
     else:
-        print('That is incorrect.')
+        print('That is incorrect, try again.')
         player_ans = input('> ')
 
 
