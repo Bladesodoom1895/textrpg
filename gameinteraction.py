@@ -4,8 +4,8 @@
 import sys, os, time, re, cmd, textwrap, random
 from playerenemyclasses import *
 from zonemap import *
+from riddles import *
 # Warriors Text RPG
-# Dalas Neff :D
 
 
 #### Game Functionality #####
@@ -19,8 +19,10 @@ def main_game_loop():
         quit()
 
 
-def setup_game():
+def setup_game(riddles_dict, zonemap):
     os.system('cls')
+
+    #### Randomly assign riddles and answers to zones ####
 
     ##### Name Handling #####
     question1 = "Hello, what's your name?\n"
@@ -105,7 +107,7 @@ def setup_game():
 def title_screen_selections():
     option = str(input("> "))
     if option.lower() == ("play"):
-        setup_game()
+        setup_game(riddles_dict, zonemap)
     elif option.lower() == ("help"):
         help_menu()
     elif option.lower() == ("quit"):
@@ -114,7 +116,7 @@ def title_screen_selections():
         print("Please enter a valid command.")
         option = str(input("> "))
         if option.lower() == ("play"):
-            setup_game()
+            setup_game(riddles, zonemap)
         elif option.lower() == ("help"):
             help_menu()
         elif option.lower() == ("quit"):
