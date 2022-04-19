@@ -6,7 +6,6 @@ from playerenemyclasses import *
 from zonemap import *
 from riddles import *
 # Warriors Text RPG
-# Dalas Neff :D
 
 
 #### Game Functionality #####
@@ -23,14 +22,7 @@ def main_game_loop():
 def setup_game(riddles_dict, zonemap):
     os.system('cls')
 
-    ###Randomly Assign riddles to zones
-    for zone in zonemap:
-        zone_riddle = ''
-        if zone_riddle not in zone:
-            zone += random.choice(riddles_dict.items())
-
-
-
+    #### Randomly assign riddles and answers to zones ####
 
     ##### Name Handling #####
     question1 = "Hello, what's your name?\n"
