@@ -1,5 +1,5 @@
 ## Riddles file ##
-riddles = {
+riddles_dict = {
     "I'm as a child, a lamb and a simpleton at once. All are born with me, yet few possess me at their moment of death. What am I?" : 'innocence',
     'What loses a head in the morning, but gets it back at night?' : 'a pillow',
     'I have no legs to dance on, no lungs to breathe. I have no life to live or die, yet do all three. What am I?' : 'fire',

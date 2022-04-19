@@ -20,16 +20,16 @@ def main_game_loop():
         quit()
 
 
-def setup_game(riddles, zonemap):
+def setup_game(riddles_dict, zonemap):
     os.system('cls')
 
     ###Randomly Assign riddles to zones
-    for riddle, answer in zonemap:
-        riddle = random.choice(list(riddles))
-        answer = riddle[1]
-        if zonemap[RIDDLE] & zonemap[ANSWER] == '':
-            zonemap[RIDDLE] = riddle
-            zonemap[ANSWER] = answer
+    for zone in zonemap:
+        zone_riddle = ''
+        if zone_riddle not in zone:
+            zone += random.choice(riddles_dict.items())
+
+
 
 
     ##### Name Handling #####
@@ -115,7 +115,7 @@ def setup_game(riddles, zonemap):
 def title_screen_selections():
     option = str(input("> "))
     if option.lower() == ("play"):
-        setup_game(riddles, zonemap)
+        setup_game(riddles_dict, zonemap)
     elif option.lower() == ("help"):
         help_menu()
     elif option.lower() == ("quit"):
