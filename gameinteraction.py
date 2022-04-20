@@ -52,13 +52,10 @@ def setup_game(riddles_dict, zonemap):
         time.sleep(0.03)
     player_job = input("> ")
     valid_jobs = ['warrior', 'mage', 'priest']
-    if player_job.lower() in valid_jobs:
-        myPlayer.job = player_job
-        print('You are now a ' + player_job + '!\n')
-    while player_job.lower() not in valid_jobs:
+    while player_job.lower().strip() not in valid_jobs:
         print('That is not a valid job!')
         player_job = input('> ')
-        if player_job.lower() in valid_jobs:
+        if player_job.lower().strip() in valid_jobs:
             myPlayer.job = player_job
             print('You are now a ' + player_job + '!\n')
 
@@ -112,20 +109,14 @@ def setup_game(riddles_dict, zonemap):
 ##### Title Screen #####
 def title_screen_selections():
     option = str(input("> "))
-    if option.lower() == ("play"):
-        setup_game(riddles_dict, zonemap)
-    elif option.lower() == ("help"):
-        help_menu()
-    elif option.lower() == ("quit"):
-        sys.exit()
-    while option.lower() not in ['play', 'help', 'quit']:
+    while option.lower().strip() not in ['play', 'help', 'quit']:
         print("Please enter a valid command.")
         option = str(input("> "))
-        if option.lower() == ("play"):
+        if option.lower().strip() == ("play"):
             setup_game(riddles_dict, zonemap)
-        elif option.lower() == ("help"):
+        elif option.lower().strip() == ("help"):
             help_menu()
-        elif option.lower() == ("quit"):
+        elif option.lower().strip() == ("quit"):
             sys.exit()
 
 
@@ -168,41 +159,41 @@ def prompt():
     while action.lower() not in acceptable_actions:
         print("Unknown action, try again.\n")
         action = str(input("> "))
-    if action.lower() == 'quit':
+    if action.lower().strip() == 'quit':
         sys.exit()
-    elif action.lower() in ['move']:
+    elif action.lower().strip() in ['move']:
         player_move()
-    elif action.lower() in ['look']:
+    elif action.lower().strip() in ['look']:
         player_examine()
 
 
 def player_move():
     ask = "where would you like to move to?\n"
-    options = ['south', 'west', 'east', 'north']
+    options = ['n' , 's', 'e', 'w']
     print(options)
     dest = input(ask)
-    if dest in ['north']:
+    if dest == 'n'.lower().strip():
         destination = zonemap[myPlayer.location]['North']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
-    elif dest in ['south']:
+    elif dest == 's'.lower().strip():
         destination = zonemap[myPlayer.location]['South']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
-    elif dest in ['west']:
+    elif dest == 'w'.lower().strip():
         destination = zonemap[myPlayer.location]['West']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
-    elif dest in ['east']:
+    elif dest == 'e'.lower().strip():
         destination = zonemap[myPlayer.location]['East']
         if destination == '':
             print("Sorry, You can't move there.")
@@ -245,7 +236,7 @@ def riddles():
         time.sleep(0.03)
     player_ans = input('> ')
 
-    if player_ans.lower() == zonemap[myPlayer.location]['Answer']:
+    if player_ans.lower().strip() == zonemap[myPlayer.location]['Answer']:
         print("Congratulations that is correct!")
         zonemap[myPlayer.location]['Solved'] = True
         win_condition(zonemap)
