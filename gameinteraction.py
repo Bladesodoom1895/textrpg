@@ -141,9 +141,9 @@ def title_screen():
 
 
 def help_menu():
-    print('############################')
+    print('#' * 28)
     print('Welcome to Warriors Text RPG')
-    print('############################')
+    print('#' * 28)
     print('- Use  the words up, down, left, right to move')
     print('- Type your commands to do them')
     print('- Use "look" to inspect something')
@@ -160,9 +160,9 @@ def print_location():
 
 
 def prompt():
-    print('\n' + "==========================")
+    print('\n' + "=" * 25)
     print("What would you like to do?")
-    acceptable_actions = {'move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look'}
+    acceptable_actions = {'move', 'quit', 'look'}
     print(acceptable_actions)
     action = str(input("> "))
     while action.lower() not in acceptable_actions:
@@ -170,40 +170,40 @@ def prompt():
         action = str(input("> "))
     if action.lower() == 'quit':
         sys.exit()
-    elif action.lower() in ['move', 'go', 'travel', 'walk']:
+    elif action.lower() in ['move']:
         player_move()
-    elif action.lower() in ['examine', 'look', 'inspect', 'interact']:
+    elif action.lower() in ['look']:
         player_examine()
 
 
 def player_move():
     ask = "where would you like to move to?\n"
-    options = ['down', 'south', 'left', 'west', 'right', 'east', 'up', 'north']
+    options = ['south', 'west', 'east', 'north']
     print(options)
     dest = input(ask)
-    if dest in ['up', 'north']:
-        destination = zonemap[myPlayer.location]['UP']
+    if dest in ['north']:
+        destination = zonemap[myPlayer.location]['North']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
-    elif dest in ['down', 'south']:
-        destination = zonemap[myPlayer.location]['DOWN']
+    elif dest in ['south']:
+        destination = zonemap[myPlayer.location]['South']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
-    elif dest in ['left', 'west']:
-        destination = zonemap[myPlayer.location]['LEFT']
+    elif dest in ['west']:
+        destination = zonemap[myPlayer.location]['West']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
-    elif dest in ['right', 'east']:
-        destination = zonemap[myPlayer.location]['RIGHT']
+    elif dest in ['east']:
+        destination = zonemap[myPlayer.location]['East']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
