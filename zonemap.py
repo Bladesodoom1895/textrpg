@@ -1,6 +1,6 @@
 ##### Map #####
 """
- a1 a2 a3 a4 x = player home
+a1 a2 a3 a4 x = player home
 -------------
 |  |  |  |  | a4
 -------------
