@@ -114,10 +114,16 @@ def title_screen_selections():
         option = str(input("> "))
         if option.lower().strip() == ("play"):
             setup_game(riddles_dict, zonemap)
+
         elif option.lower().strip() == ("help"):
             help_menu()
+
         elif option.lower().strip() == ("quit"):
             sys.exit()
+
+        else:
+            print("Unknow selection try again.")
+            title_screen_selections()
 
 
 def title_screen():
@@ -156,50 +162,59 @@ def prompt():
     acceptable_actions = {'move', 'quit', 'look'}
     print(acceptable_actions)
     action = str(input("> "))
-    while action.lower() not in acceptable_actions:
+    while action.lower().strip() not in acceptable_actions:
         print("Unknown action, try again.\n")
-        action = str(input("> "))
+        prompt()
+
     if action.lower().strip() == 'quit':
         sys.exit()
+
     elif action.lower().strip() in ['move']:
         player_move()
+
     elif action.lower().strip() in ['look']:
         player_examine()
 
 
 def player_move():
     ask = "where would you like to move to?\n"
-    options = ['n' , 's', 'e', 'w']
+    options = ['n', 's', 'e', 'w']
     print(options)
     dest = input(ask)
-    if dest == 'n'.lower().strip():
-        destination = zonemap[myPlayer.location]['North']
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-    elif dest == 's'.lower().strip():
-        destination = zonemap[myPlayer.location]['South']
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-    elif dest == 'w'.lower().strip():
-        destination = zonemap[myPlayer.location]['West']
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
-    elif dest == 'e'.lower().strip():
-        destination = zonemap[myPlayer.location]['East']
-        if destination == '':
-            print("Sorry, You can't move there.")
-            dest = input(ask)
-        else:
-            movement_handler(destination)
+    while dest not in options:
+        dest = input(ask)
+        if dest.lower().strip() == 'n':
+            destination = zonemap[myPlayer.location]['North']
+            if destination == '':
+                print("Sorry, You can't move there.")
+                player_move()
+            else:
+                movement_handler(destination)
+
+        elif dest.lower().strip() == 's':
+            destination = zonemap[myPlayer.location]['South']
+            if destination == '':
+                print("Sorry, You can't move there.")
+                player_move()
+            else:
+                movement_handler(destination)
+
+        elif dest.lower().strip() == 'w':
+            destination = zonemap[myPlayer.location]['West']
+            if destination == '':
+                print("Sorry, You can't move there.")
+                player_move()
+            else:
+                movement_handler(destination)
+
+        elif dest.lower().strip() == 'e':
+            destination = zonemap[myPlayer.location]['East']
+            if destination == '':
+                print("Sorry, You can't move there.")
+                player_move()
+
+            else:
+                movement_handler(destination)
 
 
 def movement_handler(destination):
@@ -218,12 +233,13 @@ def player_examine():
         print('Would you like to solve the puzzle?')
         print('(yes or no)')
         answer = input("> ")
-        if answer == 'yes':
+        if answer.lower().strip() == 'yes':
             riddles()
-        elif answer =='no':
+        elif answer.lower().lower().strip() == 'no':
             prompt()
         else:
             print('That is not valid input')
+            player_examine()
 
 
 def riddles():
@@ -242,7 +258,7 @@ def riddles():
         win_condition(zonemap)
     else:
         print('That is incorrect, try again.')
-        player_ans = input('> ')
+        riddles()
 
 
 def win_condition(zonemap):
