@@ -23,6 +23,12 @@ def setup_game(riddles_dict, zonemap):
     os.system('cls')
 
     #### Randomly assign riddles and answers to zones ####
+    riddle_questions = list(riddles_dict.keys())
+    random.shuffle(riddle_questions)
+
+    for i, x in zip(riddle_questions, list(zonemap.keys())):
+        zonemap[x]['RIDDLE'] = i
+        zonemap[x]['ANSWER'] = riddles_dict[i]
 
     ##### Name Handling #####
     question1 = "Hello, what's your name?\n"
@@ -116,7 +122,7 @@ def title_screen_selections():
         print("Please enter a valid command.")
         option = str(input("> "))
         if option.lower() == ("play"):
-            setup_game(riddles, zonemap)
+            setup_game(riddles_dict, zonemap)
         elif option.lower() == ("help"):
             help_menu()
         elif option.lower() == ("quit"):
@@ -149,7 +155,7 @@ def help_menu():
 def print_location():
     print('\n' + ('#' * (4 + len(myPlayer.location))))
     print('# ' + myPlayer.location.upper() + ' #')
-    print('# ' + zonemap[myPlayer.location][DESCRIPTION] + ' #')
+    print('# ' + zonemap[myPlayer.location]['DESCRIPTION'] + ' #')
     print('\n' + ('#' * (4 + len(myPlayer.location))))
 
 
@@ -176,28 +182,28 @@ def player_move():
     print(options)
     dest = input(ask)
     if dest in ['up', 'north']:
-        destination = zonemap[myPlayer.location][UP]
+        destination = zonemap[myPlayer.location]['UP']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
     elif dest in ['down', 'south']:
-        destination = zonemap[myPlayer.location][DOWN]
+        destination = zonemap[myPlayer.location]['DOWN']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
     elif dest in ['left', 'west']:
-        destination = zonemap[myPlayer.location][LEFT]
+        destination = zonemap[myPlayer.location]['LEFT']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
         else:
             movement_handler(destination)
     elif dest in ['right', 'east']:
-        destination = zonemap[myPlayer.location][RIGHT]
+        destination = zonemap[myPlayer.location]['RIGHT']
         if destination == '':
             print("Sorry, You can't move there.")
             dest = input(ask)
@@ -212,8 +218,8 @@ def movement_handler(destination):
 
 
 def player_examine():
-    print(zonemap[myPlayer.location][EXAMINE])
-    if zonemap[myPlayer.location][SOLVED] == True:
+    print(zonemap[myPlayer.location]['EXAMINE'])
+    if zonemap[myPlayer.location]['SOLVED'] == True:
         print("You have already exhausted the zone.")
         prompt()
     else:
@@ -230,7 +236,7 @@ def player_examine():
 
 
 def riddles():
-    print(zonemap[myPlayer.location][RIDDLE])
+    print(zonemap[myPlayer.location]['RIDDLE'])
     time.sleep(2)
     ask = 'What is your answer.\n'
     for char in ask:
@@ -239,9 +245,9 @@ def riddles():
         time.sleep(0.03)
     player_ans = input('> ')
 
-    if player_ans.lower() == zonemap[myPlayer.location][ANSWER]:
+    if player_ans.lower() == zonemap[myPlayer.location]['ANSWER']:
         print("Congratulations that is correct!")
-        zonemap[myPlayer.location][SOLVED] = True
+        zonemap[myPlayer.location]['SOLVED'] = True
         win_condition(zonemap)
     else:
         print('That is incorrect, try again.')
@@ -251,7 +257,7 @@ def riddles():
 def win_condition(zonemap):
     all_solved = True
     for value in zonemap.values():
-        if value[SOLVED] == False:
+        if value['SOLVED'] == False:
             all_solved = False
 
     if all_solved == True:
