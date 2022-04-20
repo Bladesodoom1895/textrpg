@@ -27,8 +27,8 @@ def setup_game(riddles_dict, zonemap):
     random.shuffle(riddle_questions)
 
     for i, x in zip(riddle_questions, list(zonemap.keys())):
-        zonemap[x]['RIDDLE'] = i
-        zonemap[x]['ANSWER'] = riddles_dict[i]
+        zonemap[x]['Riddle'] = i
+        zonemap[x]['Answer'] = riddles_dict[i]
 
     ##### Name Handling #####
     question1 = "Hello, what's your name?\n"
@@ -131,9 +131,9 @@ def title_screen_selections():
 
 def title_screen():
     os.system('cls')
-    print('############################')
+    print('#' * 28)
     print('Welcome to Warriors Text RPG')
-    print('############################')
+    print('#' * 28)
     print('          - Play -          ')
     print('          - Help -          ')
     print('          - Quit -          ')
@@ -144,7 +144,7 @@ def help_menu():
     print('#' * 28)
     print('Welcome to Warriors Text RPG')
     print('#' * 28)
-    print('- Use  the words up, down, left, right to move')
+    print('- Use  the words north, south, east, west to move')
     print('- Type your commands to do them')
     print('- Use "look" to inspect something')
     print('- Good luck and have fun!')
@@ -155,7 +155,7 @@ def help_menu():
 def print_location():
     print('\n' + ('#' * (4 + len(myPlayer.location))))
     print('# ' + myPlayer.location.upper() + ' #')
-    print('# ' + zonemap[myPlayer.location]['DESCRIPTION'] + ' #')
+    print('# ' + zonemap[myPlayer.location]['Description'] + ' #')
     print('\n' + ('#' * (4 + len(myPlayer.location))))
 
 
@@ -218,8 +218,8 @@ def movement_handler(destination):
 
 
 def player_examine():
-    print(zonemap[myPlayer.location]['EXAMINE'])
-    if zonemap[myPlayer.location]['SOLVED'] == True:
+    print(zonemap[myPlayer.location]['Examine'])
+    if zonemap[myPlayer.location]['Solved'] == True:
         print("You have already exhausted the zone.")
         prompt()
     else:
@@ -236,7 +236,7 @@ def player_examine():
 
 
 def riddles():
-    print(zonemap[myPlayer.location]['RIDDLE'])
+    print(zonemap[myPlayer.location]['Riddle'])
     time.sleep(2)
     ask = 'What is your answer.\n'
     for char in ask:
@@ -245,9 +245,9 @@ def riddles():
         time.sleep(0.03)
     player_ans = input('> ')
 
-    if player_ans.lower() == zonemap[myPlayer.location]['ANSWER']:
+    if player_ans.lower() == zonemap[myPlayer.location]['Answer']:
         print("Congratulations that is correct!")
-        zonemap[myPlayer.location]['SOLVED'] = True
+        zonemap[myPlayer.location]['Solved'] = True
         win_condition(zonemap)
     else:
         print('That is incorrect, try again.')
@@ -257,7 +257,7 @@ def riddles():
 def win_condition(zonemap):
     all_solved = True
     for value in zonemap.values():
-        if value['SOLVED'] == False:
+        if value['Solved'] == False:
             all_solved = False
 
     if all_solved == True:
