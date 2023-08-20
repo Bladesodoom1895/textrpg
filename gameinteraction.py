@@ -1,5 +1,4 @@
 # Warriors Text RPG
-# Dalas Neff :D
 
 import sys, os, time, re, cmd, textwrap, random
 from playerenemyclasses import *
@@ -7,16 +6,46 @@ from zonemap import *
 from riddles import *
 # Warriors Text RPG
 
+def title_screen():
+    os.system('cls')
+    print('#' * 28)
+    print('Welcome to Warriors Text RPG')
+    print('#' * 28)
+    print('          - Play -          ')
+    print('          - Help -          ')
+    print('          - Quit -          ')
+    title_screen_selections()
 
-#### Game Functionality #####
-def main_game_loop():
-    while myPlayer.game_over is False:
-        print_location()
-        prompt()
-    else:
-        time.sleep(5)
-        os.system('cls')
-        quit()
+
+def help_menu():
+    os.system('cls')
+    print('#' * 28)
+    print('Welcome to Warriors Text RPG')
+    print('#' * 28)
+    print('- Use  the letters n, s, e, w to move')
+    print('- Type your commands to do them')
+    print('- Use "look" to inspect something')
+    print('- Good luck and have fun!')
+    time.sleep(10)
+    title_screen()
+
+
+##### Title Screen #####
+def title_screen_selections():
+    while True:
+        option = str(input("> "))
+        if option.lower().strip() == ("play"):
+            setup_game(riddles_dict, zonemap)
+
+        elif option.lower().strip() == ("help"):
+            help_menu()
+
+        elif option.lower().strip() == ("quit"):
+            sys.exit()
+
+        else:
+            print("Unknow selection try again.")
+            title_screen_selections()
 
 
 def setup_game(riddles_dict, zonemap):
@@ -106,46 +135,15 @@ def setup_game(riddles_dict, zonemap):
     main_game_loop()
 
 
-##### Title Screen #####
-def title_screen_selections():
-    option = str(input("> "))
-    while option.lower().strip() not in ['play', 'help', 'quit']:
-        print("Please enter a valid command.")
-        option = str(input("> "))
-        if option.lower().strip() == ("play"):
-            setup_game(riddles_dict, zonemap)
-
-        elif option.lower().strip() == ("help"):
-            help_menu()
-
-        elif option.lower().strip() == ("quit"):
-            sys.exit()
-
-        else:
-            print("Unknow selection try again.")
-            title_screen_selections()
-
-
-def title_screen():
-    os.system('cls')
-    print('#' * 28)
-    print('Welcome to Warriors Text RPG')
-    print('#' * 28)
-    print('          - Play -          ')
-    print('          - Help -          ')
-    print('          - Quit -          ')
-    title_screen_selections()
-
-
-def help_menu():
-    print('#' * 28)
-    print('Welcome to Warriors Text RPG')
-    print('#' * 28)
-    print('- Use  the words north, south, east, west to move')
-    print('- Type your commands to do them')
-    print('- Use "look" to inspect something')
-    print('- Good luck and have fun!')
-    title_screen_selections()
+#### Game Functionality #####
+def main_game_loop():
+    while myPlayer.game_over is False:
+        print_location()
+        prompt()
+    else:
+        time.sleep(5)
+        os.system('cls')
+        quit()
 
 
 #### Game Interactivity #####
@@ -177,44 +175,22 @@ def prompt():
 
 
 def player_move():
-    ask = "where would you like to move to?\n"
+    ask = "Where would you like to move to?\n"
     options = ['n', 's', 'e', 'w']
-    print(options)
-    dest = input(ask)
-    while dest not in options:
-        dest = input(ask)
-        if dest.lower().strip() == 'n':
-            destination = zonemap[myPlayer.location]['North']
+    
+    while True:
+        print(options)
+        dest = input(ask).lower().strip()
+        
+        if dest in options:
+            destination = zonemap[myPlayer.location][dest]
             if destination == '':
-                print("Sorry, You can't move there.")
-                player_move()
+                print("Sorry, you can't move there.")
             else:
                 movement_handler(destination)
-
-        elif dest.lower().strip() == 's':
-            destination = zonemap[myPlayer.location]['South']
-            if destination == '':
-                print("Sorry, You can't move there.")
-                player_move()
-            else:
-                movement_handler(destination)
-
-        elif dest.lower().strip() == 'w':
-            destination = zonemap[myPlayer.location]['West']
-            if destination == '':
-                print("Sorry, You can't move there.")
-                player_move()
-            else:
-                movement_handler(destination)
-
-        elif dest.lower().strip() == 'e':
-            destination = zonemap[myPlayer.location]['East']
-            if destination == '':
-                print("Sorry, You can't move there.")
-                player_move()
-
-            else:
-                movement_handler(destination)
+                break
+        else:
+            print("Please enter a valid direction.")
 
 
 def movement_handler(destination):
@@ -224,7 +200,7 @@ def movement_handler(destination):
 
 
 def player_examine():
-    print(zonemap[myPlayer.location]['Examine'])
+    print(zonemap[myPlayer.location]['Look'])
     if zonemap[myPlayer.location]['Solved'] == True:
         print("You have already exhausted the zone.")
         prompt()
@@ -255,6 +231,7 @@ def riddles():
     if player_ans.lower().strip() == zonemap[myPlayer.location]['Answer']:
         print("Congratulations that is correct!")
         zonemap[myPlayer.location]['Solved'] = True
+        time.sleep(4)
         win_condition(zonemap)
     else:
         print('That is incorrect, try again.')
