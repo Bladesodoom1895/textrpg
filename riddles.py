@@ -1,3 +1,6 @@
+## TODO: rewrite this into an array of dictionaries ##
+## TODO: add more riddles ##
+
 ## Riddles file ##
 from re import M
 

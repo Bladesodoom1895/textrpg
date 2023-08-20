@@ -1,3 +1,6 @@
+#### TODO: rework this into a 2-dimensional array ####
+#### TODO: store player coordinates, add and subtract 1 from indexes ####
+
 ##### Map #####
 """
 a1 a2 a3 a4 x = player home

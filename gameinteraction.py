@@ -1,3 +1,5 @@
+# TODO: rework this to function with the zonemap.py and riddles.py changes #
+
 # Warriors Text RPG
 
 import sys, os, time, re, cmd, textwrap, random
