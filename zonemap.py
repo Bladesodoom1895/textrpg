@@ -1,5 +1,19 @@
-#### TODO: rework this into a 2-dimensional array ####
-#### TODO: store player coordinates, add and subtract 1 from indexes ####
+#### TODO: rework this into a class ####
+#### class Zone:
+# def __init__(
+#    self, 
+#   name: str = "", 
+#    desc: str = "", 
+#    look: str = "",
+#    n: str | None = None,
+#    s: str | None = None,
+#    e: str | None = None,
+#    w: str | None = None),
+
+#zonemap = {
+#    "a1": Zone("Library", "Erast Library", "You see a librarian.", s="b1",w="a2")
+#}
+###
 
 ##### Map #####
 """
@@ -17,9 +31,9 @@ a1 a2 a3 a4 x = player home
 
 zonemap = {
         'a1': {
-            'ZoneName': "",
-            'Description': "Welcome to A1",
-            'Look': "Nothing yet",
+            'ZoneName': "Library",
+            'Description': "Erast Library",
+            'Look': "You see a librarian.",
             'Riddle': '',
             'Answer': '',
             'Solved': False,

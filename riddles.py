@@ -1,8 +1,7 @@
-## TODO: rewrite this into an array of dictionaries ##
+## TODO: rewrite this into a .txt file with riddle:answer ##
 ## TODO: add more riddles ##
 
 ## Riddles file ##
-from re import M
 
 
 riddles_dict = {
