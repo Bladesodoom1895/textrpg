@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=MFW8DJ6qsak&list=PL1-slM0ZOosXf2oQYZpTRAoeuo0TPi
 I am a fairly new programmer with big ambitions.
 
 
-To be able to play the game you need to have Python 3.10.4
+To be able to play the game you need to have Python 3.11.4
 https://www.python.org/downloads/
 Can just use the default install and add it to the path variable.
 
