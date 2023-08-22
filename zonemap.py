@@ -16,8 +16,17 @@ a1 a2 a3 a4 x = player home
 
 
 class Zone:
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, solved: bool) -> None:
         self.name = name
+        self.solved = solved
+        self.description = '',
+        self.look = '',
+        self.riddle = '',
+        self.answer = '',
+        self.north = '',
+        self.east = '',
+        self.south = '',
+        self.west = ''
 
 
 ### Zone builder for the map ###
@@ -27,4 +36,4 @@ zones = {}
 
 for l in letters:
     for n in numbers:
-        zones[l + n] = Zone(name=f"This is the name for zone {l}{n}")
+        zones[l + n] = Zone(name=f'{{l}}{n}', solved=False)
