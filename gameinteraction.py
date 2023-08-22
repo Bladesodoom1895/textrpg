@@ -63,8 +63,8 @@ def setup_game(zonemap):
     #### Randomly assign riddles and answers to zones ####
 
     ##### Name Handling #####
-    question1 = "Hello, what's your name?\n"
-    for character in question1:
+    nameq = "Hello, what's your name?\n"
+    for character in nameq:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
@@ -72,13 +72,13 @@ def setup_game(zonemap):
     myPlayer.name = player_name
 
     ##### Job Handling #####
-    question2 = "What role do you want to play?\n"
-    question2added = "(You can play as warrior, priest, or mage)\n"
-    for character in question2:
+    jobq = "What role do you want to play?\n"
+    jobq2 = "(You can play as warrior, priest, or mage)\n"
+    for character in jobq:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.03)
-    for character in question2added:
+    for character in jobq2:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.03)
