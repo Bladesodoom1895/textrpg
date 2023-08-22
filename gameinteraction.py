@@ -2,11 +2,18 @@
 
 # Warriors Text RPG
 
-import sys, os, time, re, cmd, textwrap, random
+import sys
+import os
+import time
+import re
+import cmd
+import textwrap
+import random
 from playerenemyclasses import *
 from zonemap import *
 from riddles import *
 # Warriors Text RPG
+
 
 def title_screen():
     os.system('cls')
@@ -179,11 +186,11 @@ def prompt():
 def player_move():
     ask = "Where would you like to move to?\n"
     options = ['n', 's', 'e', 'w']
-    
+
     while True:
         print(options)
         dest = input(ask).lower().strip()
-        
+
         if dest in options:
             destination = zonemap[myPlayer.location][dest]
             if destination == '':
@@ -253,5 +260,6 @@ def win_condition(zonemap):
         title_screen()
     else:
         main_game_loop()
+
 
 title_screen()
