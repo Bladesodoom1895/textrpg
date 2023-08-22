@@ -9,9 +9,8 @@ import re
 import cmd
 import textwrap
 import random
+import zonemap
 from playerenemyclasses import *
-from zonemap import *
-from riddles import *
 # Warriors Text RPG
 
 
@@ -44,7 +43,7 @@ def title_screen_selections():
     while True:
         option = str(input("> "))
         if option.lower().strip() == ("play"):
-            setup_game(riddles_dict, zonemap)
+            setup_game(zonemap)
 
         elif option.lower().strip() == ("help"):
             help_menu()
@@ -57,16 +56,11 @@ def title_screen_selections():
             title_screen_selections()
 
 
-def setup_game(riddles_dict, zonemap):
+def setup_game(zonemap):
     os.system('cls')
 
+    #### Need to initialize all zones ####
     #### Randomly assign riddles and answers to zones ####
-    riddle_questions = list(riddles_dict.keys())
-    random.shuffle(riddle_questions)
-
-    for i, x in zip(riddle_questions, list(zonemap.keys())):
-        zonemap[x]['Riddle'] = i
-        zonemap[x]['Answer'] = riddles_dict[i]
 
     ##### Name Handling #####
     question1 = "Hello, what's your name?\n"
