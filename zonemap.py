@@ -1,7 +1,4 @@
-#### TODO: rework this into a class ####
-
-""" make n, s, e, w point to other zone objects
-to traverse node tree"""
+### make n, s, e, w point to other zone objects to traverse node tree ###
 
 ##### Map #####
 """
