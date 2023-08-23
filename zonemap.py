@@ -33,7 +33,7 @@ class Zone:
 ### Zone builder for the map ###
 
 # getting each line from the riddles.txt
-with open('riddles.txt', 'r') as r:
+with open('riddles.txt', 'r', encoding="utf8") as r:
     riddle_lines = r.readlines()
 
 # cleaning up lines to remove empty lines and white space, list comprehension is kick ass
