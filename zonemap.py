@@ -19,15 +19,15 @@ import random
 class Zone:
     def __init__(self, name: str, solved: bool) -> None:
         self.name = name
-        self.solved = solved
+        self.solved = False
         self.description = '',
         self.look = '',
         self.riddle = '',
         self.answer = '',
-        self.north = '',
-        self.east = '',
-        self.south = '',
-        self.west = ''
+        self.n = '',
+        self.e = '',
+        self.s = '',
+        self.w = ''
 
 
 ### Zone builder for the map ###
@@ -48,7 +48,7 @@ zones = {}
 
 for l in letters:
     for n in numbers:
-        zones[l + n] = Zone(name=f'{{l}}{n}', solved=False)
+        zones[l + n] = Zone(name=f'{l}{n}', solved=False)
         # pulls last entry in riddle_lines and puts it in zone
         zones[l + n].riddle, zones[l + n].answer = riddle_lines.pop().split(': ')
 
@@ -56,112 +56,112 @@ for l in letters:
 # a1
 zones['a1'].description = "zone a1's description"
 zones['a1'].look = "zone a1's look"
-zones['a1'].east = 'a2'
-zones['a1'].south = 'b1'
+zones['a1'].e = 'a2'
+zones['a1'].s = 'b1'
 
 
 # a2
 zones['a2'].description = "zone a2's description"
 zones['a2'].look = "zone a2's look"
-zones['a2'].east = 'a3'
-zones['a2'].south = 'b2'
-zones['a2'].west = 'a1'
+zones['a2'].e = 'a3'
+zones['a2'].s = 'b2'
+zones['a2'].w = 'a1'
 
 # a3
 zones['a3'].description = "zone a2's description"
 zones['a3'].look = "zone a3's look"
-zones['a3'].east = 'a4'
-zones['a3'].south = 'b3'
-zones['a3'].west = 'a2'
+zones['a3'].e = 'a4'
+zones['a3'].s = 'b3'
+zones['a3'].w = 'a2'
 
 # a4
 zones['a4'].description = "zone a4's description"
 zones['a4'].look = "zone a4's look"
-zones['a4'].south = 'b4'
-zones['a4'].west = 'a3'
+zones['a4'].s = 'b4'
+zones['a4'].w = 'a3'
 
 # b1
 zones['b1'].description = "zone b1's description"
 zones['b1'].look = "zone b1's look"
-zones['b1'].north = 'a1'
-zones['b1'].east = 'b2'
-zones['b1'].south = 'c1'
+zones['b1'].n = 'a1'
+zones['b1'].e = 'b2'
+zones['b1'].s = 'c1'
 
 # b2
 zones['b2'].description = "zone b2's description"
 zones['b2'].look = "zone b2's look"
-zones['b2'].north = 'a2'
-zones['b2'].east = 'b3'
-zones['b2'].south = 'c2'
-zones['b2'].west = 'b1'
+zones['b2'].n = 'a2'
+zones['b2'].e = 'b3'
+zones['b2'].s = 'c2'
+zones['b2'].w = 'b1'
 
 # b3
 zones['b3'].description = "zone b3's description"
 zones['b3'].look = "zone b3's look"
-zones['b3'].north = 'a3'
-zones['b3'].east = 'b4'
-zones['b3'].south = 'c3'
-zones['b3'].west = 'b2'
+zones['b3'].n = 'a3'
+zones['b3'].e = 'b4'
+zones['b3'].s = 'c3'
+zones['b3'].w = 'b2'
 
 # b4
 zones['b4'].description = "zone b4's description"
 zones['b4'].look = "zone b4's look"
-zones['b4'].north = 'a4'
-zones['b4'].south = 'c4'
-zones['b4'].west = 'b3'
+zones['b4'].n = 'a4'
+zones['b4'].s = 'c4'
+zones['b4'].w = 'b3'
 
 # c1
 zones['c1'].description = "zone c1's description"
 zones['c1'].look = "zone c1's look"
-zones['c1'].north = 'b1'
-zones['c1'].east = 'c2'
-zones['c1'].south = 'c2'
+zones['c1'].n = 'b1'
+zones['c1'].e = 'c2'
+zones['c1'].s = 'c2'
 
 # c2
 zones['c2'].description = "zone c2's description"
 zones['c2'].look = "zone c2's look"
-zones['c2'].north = 'b2'
-zones['c2'].east = 'c3'
-zones['c2'].south = 'd2'
-zones['c2'].west = 'c1'
+zones['c2'].n = 'b2'
+zones['c2'].e = 'c3'
+zones['c2'].s = 'd2'
+zones['c2'].w = 'c1'
 
 # c3
 zones['c3'].description = "zone c3's description"
 zones['c3'].look = "zone c3's look"
-zones['c3'].north = 'b3'
-zones['c3'].east = 'c4'
-zones['c3'].south = 'd3'
-zones['c3'].west = 'c2'
+zones['c3'].n = 'b3'
+zones['c3'].e = 'c4'
+zones['c3'].s = 'd3'
+zones['c3'].w = 'c2'
 
 # c4
 zones['c4'].description = "zone c4's description"
 zones['c4'].look = "zone c4's look"
-zones['c4'].north = 'b4'
-zones['c4'].south = 'd4'
-zones['c4'].west = 'c3'
+zones['c4'].n = 'b4'
+zones['c4'].s = 'd4'
+zones['c4'].w = 'c3'
 
 # d1
 zones['d1'].description = "zone d1's description"
 zones['d1'].look = "zone d1's look"
-zones['d1'].north = 'c1'
-zones['d1'].east = 'd2'
+zones['d1'].n = 'c1'
+zones['d1'].e = 'd2'
 
 # d2
 zones['d2'].description = "zone d2's description"
 zones['d2'].look = "zone d2's look"
-zones['d2'].north = 'c2'
-zones['d2'].east = 'd3'
-zones['d2'].west = 'd1'
+zones['d2'].n = 'c2'
+zones['d2'].e = 'd3'
+zones['d2'].w = 'd1'
 
 # d3
 zones['d3'].description = "zone d3's description"
 zones['d3'].look = "zone d3's look"
-zones['d3'].north = 'c3'
-zones['d3'].east = 'd4'
-zones['d3'].west = 'd2'
+zones['d3'].n = 'c3'
+zones['d3'].e = 'd4'
+zones['d3'].w = 'd2'
 
 # d4
 zones['d4'].description = "zone d4's description"
 zones['d4'].look = "zone d4's look"
-zones['d4'].north = 'c4'
-zones['d4'].west = 'd3'
+zones['d4'].n = 'c4'
+zones['d4'].w = 'd3'

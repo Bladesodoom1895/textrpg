@@ -54,9 +54,6 @@ def title_screen_selections():
 def setup_game(zonemap):
     os.system('cls')
 
-    #### Need to initialize all zones ####
-    #### Randomly assign riddles and answers to zones ####
-
     ##### Name Handling #####
     nameq = "Hello, what's your name?\n"
     for character in nameq:
@@ -96,6 +93,7 @@ def setup_game(zonemap):
     elif myPlayer.job == 'priest':
         myPlayer.hp = 60
         myPlayer.mp = 60
+    
 
     ##### Introduction #####
     question3 = "Welcome, " + player_name + " the " + player_job + '.\n'
@@ -146,10 +144,12 @@ def main_game_loop():
 
 #### Game Interactivity #####
 def print_location():
-    print('\n' + ('#' * (4 + len(myPlayer.location))))
-    print('# ' + myPlayer.location.upper() + ' #')
-    print('# ' + zonemap[myPlayer.location]['Description'] + ' #')
-    print('\n' + ('#' * (4 + len(myPlayer.location))))
+    current_zone = zonemap.zones[myPlayer.location]
+    print("\n" + ("#" * (4 + len(current_zone.name))))
+    print("Current Zone: " + current_zone.name)
+    print("#" * (4 + len(current_zone.name)))
+    print("\n" + current_zone.description)
+    prompt()
 
 
 def prompt():
@@ -169,7 +169,7 @@ def prompt():
         player_move()
 
     elif action.lower().strip() in ['look']:
-        player_examine()
+        player_look()
 
 
 def player_move():
@@ -181,7 +181,7 @@ def player_move():
         dest = input(ask).lower().strip()
 
         if dest in options:
-            destination = zonemap[myPlayer.location][dest]
+            destination = zonemap.zones[myPlayer.location]
             if destination == '':
                 print("Sorry, you can't move there.")
             else:
@@ -197,9 +197,9 @@ def movement_handler(destination):
     main_game_loop()
 
 
-def player_examine():
-    print(zonemap[myPlayer.location]['Look'])
-    if zonemap[myPlayer.location]['Solved'] == True:
+def player_look():
+    print(zonemap.zones[myPlayer.location].look())
+    if zonemap.zones[myPlayer.location].solved() == True:
         print("You have already exhausted the zone.")
         prompt()
     else:
@@ -213,11 +213,11 @@ def player_examine():
             prompt()
         else:
             print('That is not valid input')
-            player_examine()
+            player_look()
 
 
 def riddles():
-    print(zonemap[myPlayer.location]['Riddle'])
+    print(zonemap.zones[myPlayer.location].riddle())
     time.sleep(2)
     ask = 'What is your answer.\n'
     for char in ask:
@@ -226,9 +226,9 @@ def riddles():
         time.sleep(0.03)
     player_ans = input('> ')
 
-    if player_ans.lower().strip() == zonemap[myPlayer.location]['Answer']:
+    if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer():
         print("Congratulations that is correct!")
-        zonemap[myPlayer.location]['Solved'] = True
+        zonemap.zones[myPlayer.location].answer() == True
         time.sleep(4)
         win_condition(zonemap)
     else:
