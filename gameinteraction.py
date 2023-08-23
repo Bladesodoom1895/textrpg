@@ -9,8 +9,12 @@ import zonemap
 from playerenemyclasses import *
 
 
+def clear():
+    """ An OS agnostic command to clear the screen. """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def title_screen():
-    os.system('cls')
+    clear()
     print('#' * 28)
     print('Welcome to Warriors Text RPG')
     print('#' * 28)
@@ -21,7 +25,7 @@ def title_screen():
 
 
 def help_menu():
-    os.system('cls')
+    clear()
     print('#' * 28)
     print('Welcome to Warriors Text RPG')
     print('#' * 28)
@@ -36,14 +40,14 @@ def help_menu():
 ##### Title Screen #####
 def title_screen_selections():
     while True:
-        option = str(input("> "))
-        if option.lower().strip() == ("play"):
+        option = input("> ").lower().strip()
+        if option == ("play"):
             setup_game(zonemap)
 
-        elif option.lower().strip() == ("help"):
+        elif option== ("help"):
             help_menu()
 
-        elif option.lower().strip() == ("quit"):
+        elif option == ("quit"):
             sys.exit()
 
         else:
@@ -52,7 +56,7 @@ def title_screen_selections():
 
 
 def setup_game(zonemap):
-    os.system('cls')
+    clear()
 
     #### Need to initialize all zones ####
     #### Randomly assign riddles and answers to zones ####
@@ -126,7 +130,7 @@ def setup_game(zonemap):
         time.sleep(0.1)
     time.sleep(1)
 
-    os.system('cls')
+    clear()
     print('###################')
     print("# Let's Start Now #")
     print('###################')
@@ -140,7 +144,7 @@ def main_game_loop():
         prompt()
     else:
         time.sleep(5)
-        os.system('cls')
+        clear()
         quit()
 
 
