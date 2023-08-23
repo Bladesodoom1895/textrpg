@@ -36,14 +36,14 @@ def help_menu():
 ##### Title Screen #####
 def title_screen_selections():
     while True:
-        option = str(input("> "))
-        if option.lower().strip() == ("play"):
+        option = input("> ").lower().strip()
+        if option == ("play"):
             setup_game(zonemap)
 
-        elif option.lower().strip() == ("help"):
+        elif option== ("help"):
             help_menu()
 
-        elif option.lower().strip() == ("quit"):
+        elif option == ("quit"):
             sys.exit()
 
         else:
