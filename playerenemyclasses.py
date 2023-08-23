@@ -12,9 +12,8 @@ class player:
 
 myPlayer = player()
 
+
 ##### Enemy Setup #####
-
-
 class enemy:
     def __init__(self):
         self.name = ''

@@ -5,13 +5,8 @@
 import sys
 import os
 import time
-import re
-import cmd
-import textwrap
-import random
 import zonemap
 from playerenemyclasses import *
-# Warriors Text RPG
 
 
 def title_screen():
