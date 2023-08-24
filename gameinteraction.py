@@ -185,7 +185,7 @@ def player_move():
         dest = input(ask).lower().strip()
 
         if dest in options:
-            destination = zonemap.zones[myPlayer.location][dest]
+            destination = zonemap.zones[myPlayer.location]
             if destination == '':
                 print("Sorry, you can't move there.")
             else:
