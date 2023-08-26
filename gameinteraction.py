@@ -139,7 +139,6 @@ def setup_game(zonemap):
 def main_game_loop():
     while myPlayer.game_over is False:
         print_location()
-        prompt()
     else:
         time.sleep(5)
         clear()
@@ -189,7 +188,8 @@ def player_move():
             new_location = getattr(zonemap.zones[myPlayer.location], dest)
             movement_handler(new_location)
         except AttributeError:
-            print("nah that's not a zone")
+            print("You can't move there.")
+            player_move()
 
 def movement_handler(dest):
     print("\n" + "You have moved to " + dest + ".")
@@ -198,8 +198,9 @@ def movement_handler(dest):
 
 
 def player_look():
-    print(zonemap.zones[myPlayer.location].look())
-    if zonemap.zones[myPlayer.location].solved() == True:
+    print(zonemap.zones[myPlayer.location].look)
+
+    if zonemap.zones[myPlayer.location].solved == True:
         print("You have already exhausted the zone.")
         prompt()
     else:
@@ -217,7 +218,7 @@ def player_look():
 
 
 def riddles():
-    print(zonemap.zones[myPlayer.location].riddle())
+    print(zonemap.zones[myPlayer.location].riddle)
     time.sleep(2)
     ask = 'What is your answer.\n'
     for char in ask:
@@ -226,29 +227,28 @@ def riddles():
         time.sleep(0.03)
     player_ans = input('> ')
 
-    if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer():
+    if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer:
         print("Congratulations that is correct!")
-        zonemap.zones[myPlayer.location].answer() == True
+        zonemap.zones[myPlayer.location].answer == True
         time.sleep(4)
-        win_condition(zonemap)
+        win_condition()
     else:
         print('That is incorrect, try again.')
         riddles()
 
 
-def win_condition(zonemap):
+def win_condition():
     all_solved = True
-    for value in zonemap.values():
-        if value['Solved'] == False:
+    for z in zonemap.zones:
+        if z.solved == False:
             all_solved = False
+        main_game_loop()
 
     if all_solved == True:
         print('Congratulations you have won!')
         time.sleep(10)
         myPlayer.game_over == True
         title_screen()
-    else:
-        main_game_loop()
 
 
 title_screen()

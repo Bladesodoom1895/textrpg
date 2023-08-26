@@ -24,7 +24,7 @@ I shave everyday, but my beard stays the same. What am I?: a barber
 I have branches, but no fruit, trunk or leaves. What am I?: a bank
 What can't talk but will reply when spoken to?: an echo
 The more of this there is, the less you see. What is it?: darkness
-David's parents have three sons: Snap, Crackle, and what's the name of the third son?": david
+David's parents have three sons, Snap, Crackle, and what's the name of the third son?": david
 I follow you all the time and copy your every move, but you can't touch or catch me. What am I?: your shadow
 What has many keys but can't open a single lock?: a piano
 What can you hold in your left hand but not your right?: your right elbow

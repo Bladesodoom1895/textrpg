@@ -1,5 +1,3 @@
-### make n, s, e, w point to other zone objects to traverse node tree ###
-
 ##### Map #####
 """
 a1 a2 a3 a4 x = player home
