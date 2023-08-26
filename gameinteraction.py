@@ -142,7 +142,7 @@ def main_game_loop():
     else:
         time.sleep(5)
         clear()
-        quit()
+        title_screen()
 
 
 #### Game Interactivity #####
@@ -231,16 +231,24 @@ def riddles():
         print("Congratulations that is correct!")
         zonemap.zones[myPlayer.location].answer == True
         time.sleep(4)
-        win_condition()
+        win_condition(zonemap)
     else:
         print('That is incorrect, try again.')
         riddles()
 
 
-def win_condition():
+def win_condition(zonemap):
+    """set all_solved to True, loop through all zones and
+    check if all zones have been solved, .solved == True
+    for all zones, if not call main game loop to continue,
+    if all zones are solved the print that they won, wait 10
+    seconds then set myPlayer.game_over to True and call
+    title_screen"""
     all_solved = True
-    for z in zonemap.zones:
-        if z.solved == False:
+
+    for zone in zonemap.zones:
+        zone = getattr(zonemap.zones[zone], solved)
+        if [zone].solved == False:
             all_solved = False
         main_game_loop()
 
@@ -248,7 +256,7 @@ def win_condition():
         print('Congratulations you have won!')
         time.sleep(10)
         myPlayer.game_over == True
-        title_screen()
+        main_game_loop()
 
 
 title_screen()
