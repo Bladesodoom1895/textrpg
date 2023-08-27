@@ -71,8 +71,8 @@ What would you find in the middle of Toronto?: the letter o
 You see me once in June, twice in November and not at all in May. What am I?: the letter e
 Two in a corner, one in a room, zero in a house, but one in a shelter. What is it?: the letter r
 What is 3/7 chicken, 2/3 cat and 2/4 goat?: chicago
-I am a word of letters three; add two and fewer there will be. What word am I?": 'few'
-What word of five letters has one left when two are removed?": 'stone'
+I am a word of letters three; add two and fewer there will be. What word am I?": few
+What word of five letters has one left when two are removed?": stone
 What is the end of everything?: the letter g
 What word is pronounced the same if you take away four of its five letters?: queue
 What is so fragile that saying its name breaks it?: silence
@@ -80,7 +80,7 @@ What can run but never walks, has a mouth but never talks, has a head but never 
 What can fill a room but takes up no space?: light
 If you drop me I'm sure to crack, but give me a smile and I'll always smile back. What am I?: a mirror
 The more you take, the more you leave behind. What are they?: footsteps
-I turn once, what is out will not get in. I turn again, what is in will not get out. What am I?": 'a key'
+I turn once, what is out will not get in. I turn again, what is in will not get out. What am I?": a key
 People make me, save me, change me, raise me. What am I?: money
 What breaks yet never falls, and what falls yet never breaks?: day and night
 What goes through cities and fields, but never moves?: a road

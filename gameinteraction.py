@@ -176,18 +176,24 @@ def prompt():
 
 
 def player_move():
+    """Get all valid directions player can go based on current zone
+    print all valid directions for player to chose from
+    ask player which option they would like to do
+    send the option to movement hanlder"""
     dest = input("Where would you like to move to? \n" ">").strip().lower()
 
     while dest not in ['n','e','s','w']:
         print("Not a valid location to move.")
         dest = input("Where would you like to move to? \n" ">").strip().lower()
 
-    new_location = ''
-    while new_location == '':
+    while True:
         new_location = getattr(zonemap.zones[myPlayer.location], dest)
-        movement_handler(new_location)
-        print("You can't move there.")
-        player_move()
+        if new_location == '':
+            print("Invalid move")
+            player_move()
+        else:
+            movement_handler(new_location)
+            
 
 def movement_handler(dest):
     print("\n" + "You have moved to " + dest + ".")
