@@ -13,7 +13,6 @@ def clear():
     """ An OS agnostic command to clear the screen. """
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
 def typewriter(message, delay=0.05):
     for char in message:
         sys.stdout.write(char)
@@ -56,10 +55,8 @@ def title_screen_selections():
 
         elif option == ("quit"):
             sys.exit()
-
         else:
-            print("Unknow selection try again.")
-            title_screen_selections()
+            input("Unknown selection, try again.")
 
 
 def setup_game(zonemap):
@@ -146,20 +143,16 @@ def prompt():
     print("What would you like to do?")
     acceptable_actions = {'move', 'quit', 'look'}
     print(acceptable_actions)
-    action = str(input("> "))
-    while action.lower().strip() not in acceptable_actions:
-        print("Unknown action, try again.\n")
-        prompt()
-
-    if action.lower().strip() == 'quit':
-        sys.exit()
-
-    elif action.lower().strip() in ['move']:
-        player_move()
-
-    elif action.lower().strip() in ['look']:
-        player_look()
-
+    while True:
+        action = input("> ").lower().strip()
+        if action == 'quit':
+            sys.exit()
+        elif action in ['move']:
+            player_move()
+        elif action in ['look']:
+            player_look()
+        else:
+            input("Unknown selection, try again.")
 
 def player_move():
     dest = input("Where would you like to move to? \n" ">").strip().lower()
