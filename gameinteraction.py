@@ -163,12 +163,10 @@ def player_move():
 
     new_location = ''
     while new_location == '':
-        try:
-            new_location = getattr(zonemap.zones[myPlayer.location], dest)
-            movement_handler(new_location)
-        except AttributeError:
-            print("You can't move there.")
-            player_move()
+        new_location = getattr(zonemap.zones[myPlayer.location], dest)
+        movement_handler(new_location)
+        print("You can't move there.")
+        player_move()
 
 def movement_handler(dest):
     print("\n" + "You have moved to " + dest + ".")
@@ -201,37 +199,30 @@ def riddles():
     time.sleep(2)
     ask = 'What is your answer.\n'
     typewriter(ask, delay=0.03)
+
     player_ans = input('> ')
 
     if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer:
         print("Congratulations that is correct!")
-        zonemap.zones[myPlayer.location].answer == True
+        zonemap.zones[myPlayer.location].solved = True
         time.sleep(4)
-        win_condition(zonemap)
+        win_condition()
     else:
         print('That is incorrect, try again.')
         riddles()
 
 
-def win_condition(zonemap):
-    """set all_solved to True, loop through all zones and
-    check if all zones have been solved, .solved == True
-    for all zones, if not call main game loop to continue,
-    if all zones are solved the print that they won, wait 10
-    seconds then set myPlayer.game_over to True and call
-    title_screen"""
+def win_condition():
     all_solved = True
-
-    for zone in zonemap.zones:
-        zone = getattr(zonemap.zones[zone], solved)
-        if [zone].solved == False:
+    for zone in zonemap.zones.values():
+        if zone.solved == False:
             all_solved = False
         main_game_loop()
 
     if all_solved == True:
         print('Congratulations you have won!')
         time.sleep(10)
-        myPlayer.game_over == True
+        myPlayer.game_over = True
         main_game_loop()
 
 
