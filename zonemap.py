@@ -17,7 +17,7 @@ import random
 class Zone:
     def __init__(self, name: str, solved: bool) -> None:
         self.name = name
-        self.solved = False
+        self.solved = bool
         self.description = '',
         self.look = '',
         self.riddle = '',
@@ -49,6 +49,7 @@ for l in letters:
         zones[l + n] = Zone(name=f'{l}{n}', solved=False)
         # pulls last entry in riddle_lines and puts it in zone
         zones[l + n].riddle, zones[l + n].answer = riddle_lines.pop().split(': ')
+
 
 
 # a1
