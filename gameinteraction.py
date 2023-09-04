@@ -13,6 +13,12 @@ def clear():
     """ An OS agnostic command to clear the screen. """
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def typewriter(message, delay=0.05):
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+
 def title_screen():
     clear()
     print('#' * 28)
@@ -49,10 +55,8 @@ def title_screen_selections():
 
         elif option == ("quit"):
             sys.exit()
-
         else:
-            print("Unknow selection try again.")
-            title_screen_selections()
+            input("Unknown selection, try again.")
 
 
 def setup_game(zonemap):
@@ -60,24 +64,15 @@ def setup_game(zonemap):
 
     ##### Name Handling #####
     nameq = "Hello, what's your name?\n"
-    for character in nameq:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
+    typewriter(nameq)
     player_name = input("> ")
     myPlayer.name = player_name
 
     ##### Job Handling #####
     jobq = "What role do you want to play?\n"
+    typewriter(jobq, delay=0.03)
     jobq2 = "(You can play as warrior, priest, or mage)\n"
-    for character in jobq:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.03)
-    for character in jobq2:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.03)
+    typewriter(jobq2, delay=0.03)
     player_job = input("> ")
     valid_jobs = ['warrior', 'mage', 'priest']
     while player_job.lower().strip() not in valid_jobs:
@@ -107,25 +102,13 @@ def setup_game(zonemap):
         time.sleep(0.05)
 
     speech1 = "This is the fantasy world of Erast!\n"
+    typewriter(speech1)
     speech2 = "I hope it greets you well!\n"
+    typewriter(speech2)
     speech3 = "Just make sure you don't get too lost!\n"
+    typewriter(speech3,delay=0.04)
     speech4 = "Hehehe..."
-    for character in speech1:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-    for character in speech2:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-    for character in speech3:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.04)
-    for character in speech4:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.1)
+    typewriter(speech4,delay=0.1)
     time.sleep(1)
 
     clear()
@@ -160,20 +143,16 @@ def prompt():
     print("What would you like to do?")
     acceptable_actions = {'move', 'quit', 'look'}
     print(acceptable_actions)
-    action = str(input("> "))
-    while action.lower().strip() not in acceptable_actions:
-        print("Unknown action, try again.\n")
-        prompt()
-
-    if action.lower().strip() == 'quit':
-        sys.exit()
-
-    elif action.lower().strip() in ['move']:
-        player_move()
-
-    elif action.lower().strip() in ['look']:
-        player_look()
-
+    while True:
+        action = input("> ").lower().strip()
+        if action == 'quit':
+            sys.exit()
+        elif action in ['move']:
+            player_move()
+        elif action in ['look']:
+            player_look()
+        else:
+            input("Unknown selection, try again.")
 
 def player_move():
     """Get all valid directions player can go based on current zone
@@ -225,10 +204,7 @@ def riddles():
     print(zonemap.zones[myPlayer.location].riddle)
     time.sleep(2)
     ask = 'What is your answer.\n'
-    for char in ask:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.03)
+    typewriter(ask, delay=0.03)
 
     player_ans = input('> ')
 
