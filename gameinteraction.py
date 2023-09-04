@@ -96,10 +96,7 @@ def setup_game(zonemap):
 
     ##### Introduction #####
     question3 = "Welcome, " + player_name + " the " + player_job + '.\n'
-    for character in question3:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
+    typewriter(question3, delay=0.03)
 
     speech1 = "This is the fantasy world of Erast!\n"
     typewriter(speech1)
@@ -155,11 +152,6 @@ def prompt():
             input("Unknown selection, try again.")
 
 def player_move():
-    """ask player where they would like to move out of the directions
-    if not a valid direction ask again, if a valid direction, check
-    if the direction has a zone next to it, if so send the new location
-    to movement handler, if not tell them they can't move there and ask
-    again"""
     dest = input("Where would you like to move to? \n" ">").strip().lower()
 
     while dest not in ['n','e','s','w']:
@@ -176,7 +168,6 @@ def player_move():
             
 
 def movement_handler(dest):
-    print(dest)
     print("You have moved to " + dest + ".")
     myPlayer.location = dest
     main_game_loop()
@@ -185,22 +176,21 @@ def movement_handler(dest):
 def player_look():
     print(zonemap.zones[myPlayer.location].look)
 
-    if zonemap.zones[myPlayer.location].solved == True:
-        print("You have already exhausted the zone.")
-        prompt()
-    else:
-        print('You can trigger a puzzle here.')
-        print('Would you like to solve the puzzle?')
-        print('(yes or no)')
-        answer = input("> ")
-        if answer.lower().strip() == 'yes':
-            riddles()
-        elif answer.lower().lower().strip() == 'no':
+    while True:
+        if zonemap.zones[myPlayer.location].solved == True:
+            print("You have already exhausted the zone.")
             prompt()
         else:
-            print('That is not valid input')
-            player_look()
-
+            print('You can trigger a puzzle here.')
+            print('Would you like to solve the puzzle?')
+            print('(yes or no)')
+            answer = input("> ")
+            if answer.lower().strip() == 'yes':
+                riddles()
+            elif answer.lower().lower().strip() == 'no':
+                prompt()
+            else:
+                print('That is not valid input')
 
 def riddles():
     print(zonemap.zones[myPlayer.location].riddle)
