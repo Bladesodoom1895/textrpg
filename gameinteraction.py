@@ -200,14 +200,14 @@ def riddles():
 
     player_ans = input('> ')
 
-    if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer:
-        print("Congratulations that is correct!")
-        zonemap.zones[myPlayer.location].solved = True
-        time.sleep(4)
-        win_condition()
-    else:
-        print('That is incorrect, try again.')
-        riddles()
+    while True:
+        if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer:
+            print("Congratulations that is correct!")
+            zonemap.zones[myPlayer.location].solved = True
+            time.sleep(4)
+            win_condition()
+        else:
+            print('That is incorrect, try again.')
 
 
 def win_condition():
