@@ -67,7 +67,7 @@ zones['a2'].s = 'b2'
 zones['a2'].w = 'a1'
 
 # a3
-zones['a3'].description = "zone a2's description"
+zones['a3'].description = "zone a3's description"
 zones['a3'].look = "zone a3's look"
 zones['a3'].e = 'a4'
 zones['a3'].s = 'b3'
