@@ -109,9 +109,9 @@ def setup_game(zonemap):
     time.sleep(1)
 
     clear()
-    print('###################')
+    print('#' * 19)
     print("# Let's Start Now #")
-    print('###################')
+    print('#' * 19)
     main_game_loop()
 
 
@@ -128,9 +128,9 @@ def main_game_loop():
 #### Game Interactivity #####
 def print_location():
     current_zone = zonemap.zones[myPlayer.location]
-    print("\n" + ("#" * (4 + len(current_zone.name))))
+    print("\n" + ("#" * (14 + len(current_zone.name))))
     print("Current Zone: " + current_zone.name)
-    print("#" * (4 + len(current_zone.name)))
+    print("#" * (14 + len(current_zone.name)))
     print("\n" + current_zone.description)
     prompt()
 
@@ -198,9 +198,8 @@ def riddles():
     ask = 'What is your answer.\n'
     typewriter(ask, delay=0.03)
 
-    player_ans = input('> ')
-
     while True:
+        player_ans = input('> ')
         if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer:
             print("Congratulations that is correct!")
             zonemap.zones[myPlayer.location].solved = True
