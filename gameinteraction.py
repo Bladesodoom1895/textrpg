@@ -152,6 +152,7 @@ def prompt():
             input("Unknown selection, try again.")
 
 def player_move():
+    print('n','e','s','w')
     dest = input("Where would you like to move to? \n" ">").strip().lower()
 
     while dest not in ['n','e','s','w']:
