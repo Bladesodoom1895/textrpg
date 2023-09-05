@@ -5,20 +5,21 @@
 import sys
 import os
 import time
-from zonemap import *
-from zonemap import zones
+import zonemap
 from playerenemyclasses import *
 
-DEBUG = False
+
 def clear():
     """ An OS agnostic command to clear the screen. """
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def typewriter(message, delay=0.05):
     for char in message:
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(delay)
+
 
 def title_screen():
     clear()
@@ -46,29 +47,27 @@ def help_menu():
 
 ##### Title Screen #####
 def title_screen_selections():
-    if DEBUG:
-        setup_game()
-    while True:
+    option = input("> ").lower().strip()
+
+    while option not in ['help', 'quit', 'play']:
+        print('Unknown selection, try again.')
         option = input("> ").lower().strip()
-        if option == ("play"):
-            setup_game()
 
-        elif option== ("help"):
-            help_menu()
+    if option == ("play"):
+        setup_game(zonemap)
 
-        elif option == ("quit"):
-            sys.exit()
-        else:
-            input("Unknown selection, try again.")
+    elif option == ("help"):
+        help_menu()
+
+    elif option == ("quit"):
+        sys.exit()
+    else:
+        print("Idk how you got here but good job")
 
 
-def setup_game():
+def setup_game(zonemap):
     clear()
-    if DEBUG:
-        myPlayer.name = "Debug"
-        myPlayer.job = "Mage"
-        print(f"{myPlayer.name=}, {myPlayer.job=}")
-        main_game_loop()
+
     ##### Name Handling #####
     nameq = "Hello, what's your name?\n"
     typewriter(nameq)
@@ -99,7 +98,6 @@ def setup_game():
     elif myPlayer.job == 'priest':
         myPlayer.hp = 60
         myPlayer.mp = 60
-    
 
     ##### Introduction #####
     question3 = "Welcome, " + player_name + " the " + player_job + '.\n'
@@ -110,9 +108,9 @@ def setup_game():
     speech2 = "I hope it greets you well!\n"
     typewriter(speech2)
     speech3 = "Just make sure you don't get too lost!\n"
-    typewriter(speech3,delay=0.04)
+    typewriter(speech3, delay=0.04)
     speech4 = "Hehehe..."
-    typewriter(speech4,delay=0.1)
+    typewriter(speech4, delay=0.1)
     time.sleep(1)
 
     clear()
@@ -134,7 +132,7 @@ def main_game_loop():
 
 #### Game Interactivity #####
 def print_location():
-    current_zone = zones[myPlayer.location]
+    current_zone = zonemap.zones[myPlayer.location]
     print("\n" + ("#" * (14 + len(current_zone.name))))
     print("Current Zone: " + current_zone.name)
     print("#" * (14 + len(current_zone.name)))
@@ -147,33 +145,36 @@ def prompt():
     print("What would you like to do?")
     acceptable_actions = {'move', 'quit', 'look'}
     print(acceptable_actions)
-    while True:
+
+    action = input("> ").lower().strip()
+    while action not in ['move', 'quit', 'look']:
+        print("Unknown selection, try again.")
         action = input("> ").lower().strip()
-        if action == 'quit':
-            sys.exit()
-        elif action in ['move']:
-            player_move()
-        elif action in ['look']:
-            player_look()
-        else:
-            input("Unknown selection, try again.")
+
+    if action == 'quit':
+        sys.exit()
+    elif action in ['move']:
+        player_move()
+    elif action in ['look']:
+        player_look()
+    else:
+        print("Idk how you got here but good job")
+
 
 def player_move():
-    print('n','e','s','w')
     dest = input("Where would you like to move to? \n" ">").strip().lower()
 
-    while dest not in ['n','e','s','w']:
+    while dest not in ['n', 'e', 's', 'w']:
         print("Not a valid location to move.")
         dest = input("Where would you like to move to? \n" ">").strip().lower()
 
-    while True:
-        new_location = getattr(zones[myPlayer.location], dest)
-        if new_location[0] == '':
-            print("Invalid move")
-            player_move()
-        else:
-            movement_handler(new_location)
-            
+    new_location = getattr(zonemap.zones[myPlayer.location], dest)
+    if new_location[0] == '':
+        print("Invalid move")
+        player_move()
+    else:
+        movement_handler(new_location)
+
 
 def movement_handler(dest):
     print("You have moved to " + dest + ".")
@@ -182,47 +183,53 @@ def movement_handler(dest):
 
 
 def player_look():
-    print(zones[myPlayer.location].look)
+    print(zonemap.zones[myPlayer.location].look)
 
-    while True:
-        if zones[myPlayer.location].solved == True:
-            print("You have already exhausted the zone.")
+    if zonemap.zones[myPlayer.location].solved == True:
+        print("You have already exhausted the zone.")
+        prompt()
+    else:
+        print('You can trigger a puzzle here.')
+        print('Would you like to solve the puzzle?')
+        print('(yes or no)')
+
+        answer = input("> ").lower().strip()
+        while answer not in ['yes', 'no']:
+            print('That is not valid input')
+            answer = input("> ").lower().strip()
+
+        if answer == 'yes':
+            riddles()
+        elif answer == 'no':
             prompt()
         else:
-            print('You can trigger a puzzle here.')
-            print('Would you like to solve the puzzle?')
-            print('(yes or no)')
-            answer = input("> ")
-            if answer.lower().strip() == 'yes':
-                riddles()
-            elif answer.lower().lower().strip() == 'no':
-                prompt()
-            else:
-                print('That is not valid input')
+            print("Idk how you got here but good job")
+
 
 def riddles():
-    print(zones[myPlayer.location].riddle)
+    print(zonemap.zones[myPlayer.location].riddle)
     time.sleep(2)
     ask = 'What is your answer.\n'
     typewriter(ask, delay=0.03)
 
-    while True:
-        player_ans = input('> ')
-        if player_ans.lower().strip() == zones[myPlayer.location].answer:
-            print("Congratulations that is correct!")
-            zones[myPlayer.location].solved = True
-            time.sleep(4)
-            win_condition()
-        else:
-            print('That is incorrect, try again.')
+    player_ans = input('> ').lower().strip()
+
+    while player_ans != zonemap.zones[myPlayer.location].answer:
+        print('That is incorrect, try again.')
+        player_ans = input('> ').lower().strip()
+
+    print("Congratulations that is correct!")
+    zonemap.zones[myPlayer.location].solved = True
+    time.sleep(4)
+    win_condition()
 
 
 def win_condition():
     all_solved = True
-    for zone in zones:
-        for value in zones.values():
-            if value.solved == False:
-                all_solved = False
+    for zone in zonemap.zones.values():
+        if zone.solved == False:
+            all_solved = False
+        main_game_loop()
 
     if all_solved == True:
         print('Congratulations you have won!')
