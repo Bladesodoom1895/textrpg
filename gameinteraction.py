@@ -223,7 +223,6 @@ def win_condition():
         for value in zones.values():
             if value.solved == False:
                 all_solved = False
-            # main_game_loop()
 
     if all_solved == True:
         print('Congratulations you have won!')
