@@ -162,7 +162,8 @@ def prompt():
 
 
 def player_move():
-    dest = input("Where would you like to move to? \n" ">").strip().lower()
+    dest = input(
+        "Where would you like to move to? (n, e, s, w)\n" ">").strip().lower()
 
     while dest not in ['n', 'e', 's', 'w']:
         print("Not a valid location to move.")
