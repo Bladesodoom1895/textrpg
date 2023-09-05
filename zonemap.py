@@ -14,6 +14,8 @@ a1 a2 a3 a4 x = player home
 
 import random
 
+DEBUG = False
+
 class Zone:
     def __init__(self, name: str, solved: bool) -> None:
         self.name = name
@@ -164,3 +166,17 @@ zones['d4'].description = "zone d4's description"
 zones['d4'].look = "zone d4's look"
 zones['d4'].n = 'c4'
 zones['d4'].w = 'd3'
+
+
+if DEBUG:
+    new_zones = []
+    for letter in letters:
+        for number in numbers:
+            new_zones.append(f"{letter}{number}")
+
+    for location in new_zones:
+        if location != "b2":
+            zones[location].solved = True
+
+    for zone in zones.values():
+        print(zone.name, zone.solved)

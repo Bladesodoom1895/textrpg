@@ -6,9 +6,10 @@ import sys
 import os
 import time
 from zonemap import *
+from zonemap import zones
 from playerenemyclasses import *
 
-
+DEBUG = False
 def clear():
     """ An OS agnostic command to clear the screen. """
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -45,6 +46,8 @@ def help_menu():
 
 ##### Title Screen #####
 def title_screen_selections():
+    if DEBUG:
+        setup_game()
     while True:
         option = input("> ").lower().strip()
         if option == ("play"):
@@ -61,7 +64,11 @@ def title_screen_selections():
 
 def setup_game():
     clear()
-
+    if DEBUG:
+        myPlayer.name = "Debug"
+        myPlayer.job = "Mage"
+        print(f"{myPlayer.name=}, {myPlayer.job=}")
+        main_game_loop()
     ##### Name Handling #####
     nameq = "Hello, what's your name?\n"
     typewriter(nameq)
