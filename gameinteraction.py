@@ -60,6 +60,7 @@ def title_screen_selections():
             sys.exit()
         else:
             input("Unknown selection, try again.")
+        break
 
 
 def setup_game():
@@ -88,6 +89,7 @@ def setup_game():
         if player_job.lower().strip() in valid_jobs:
             myPlayer.job = player_job
             print('You are now a ' + player_job + '!\n')
+        break
 
     ##### Player Stats #####
     if myPlayer.job == 'warrior':
@@ -157,6 +159,7 @@ def prompt():
             player_look()
         else:
             input("Unknown selection, try again.")
+        break
 
 def player_move():
     print('n','e','s','w')
@@ -165,6 +168,7 @@ def player_move():
     while dest not in ['n','e','s','w']:
         print("Not a valid location to move.")
         dest = input("Where would you like to move to? \n" ">").strip().lower()
+        break
 
     while True:
         new_location = getattr(zones[myPlayer.location], dest)
@@ -173,7 +177,7 @@ def player_move():
             player_move()
         else:
             movement_handler(new_location)
-            
+        break
 
 def movement_handler(dest):
     print("You have moved to " + dest + ".")
@@ -199,6 +203,7 @@ def player_look():
                 prompt()
             else:
                 print('That is not valid input')
+        break
 
 def riddles():
     print(zones[myPlayer.location].riddle)
@@ -215,6 +220,7 @@ def riddles():
             win_condition()
         else:
             print('That is incorrect, try again.')
+        break
 
 
 def win_condition():
