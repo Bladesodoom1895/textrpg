@@ -17,7 +17,7 @@ import random
 class Zone:
     def __init__(self, name: str, solved: bool) -> None:
         self.name = name
-        self.solved = bool
+        self.solved = solved
         self.description = '',
         self.look = '',
         self.riddle = '',
