@@ -64,7 +64,7 @@ I am an odd number. Take away a letter and I become even. What number am I?: sev
 If two's company, and three's a crowd, what are four and five?: nine
 What three numbers, none of which is zero, give the same result whether they're added or multiplied? : one, two and three
 A little girl goes to the store and buys one dozen eggs. As she is going home, all but three break. How many eggs are left unbroken?: three
-What five-letter word becomes shorter when you add two letters to it?: shorter
+What five-letter word becomes shorter when you add two letters to it?: short
 What begins with an “e” and only contains one letter?: an envelope
 A word I know, six letters it contains, remove one letter and 12 remains. What is it?: dozens
 What would you find in the middle of Toronto?: the letter o

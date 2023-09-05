@@ -5,7 +5,7 @@
 import sys
 import os
 import time
-import zonemap
+from zonemap import *
 from playerenemyclasses import *
 
 
@@ -48,7 +48,7 @@ def title_screen_selections():
     while True:
         option = input("> ").lower().strip()
         if option == ("play"):
-            setup_game(zonemap)
+            setup_game()
 
         elif option== ("help"):
             help_menu()
@@ -59,7 +59,7 @@ def title_screen_selections():
             input("Unknown selection, try again.")
 
 
-def setup_game(zonemap):
+def setup_game():
     clear()
 
     ##### Name Handling #####
@@ -127,7 +127,7 @@ def main_game_loop():
 
 #### Game Interactivity #####
 def print_location():
-    current_zone = zonemap.zones[myPlayer.location]
+    current_zone = zones[myPlayer.location]
     print("\n" + ("#" * (14 + len(current_zone.name))))
     print("Current Zone: " + current_zone.name)
     print("#" * (14 + len(current_zone.name)))
@@ -159,7 +159,7 @@ def player_move():
         dest = input("Where would you like to move to? \n" ">").strip().lower()
 
     while True:
-        new_location = getattr(zonemap.zones[myPlayer.location], dest)
+        new_location = getattr(zones[myPlayer.location], dest)
         if new_location[0] == '':
             print("Invalid move")
             player_move()
@@ -174,10 +174,10 @@ def movement_handler(dest):
 
 
 def player_look():
-    print(zonemap.zones[myPlayer.location].look)
+    print(zones[myPlayer.location].look)
 
     while True:
-        if zonemap.zones[myPlayer.location].solved == True:
+        if zones[myPlayer.location].solved == True:
             print("You have already exhausted the zone.")
             prompt()
         else:
@@ -193,16 +193,16 @@ def player_look():
                 print('That is not valid input')
 
 def riddles():
-    print(zonemap.zones[myPlayer.location].riddle)
+    print(zones[myPlayer.location].riddle)
     time.sleep(2)
     ask = 'What is your answer.\n'
     typewriter(ask, delay=0.03)
 
     while True:
         player_ans = input('> ')
-        if player_ans.lower().strip() == zonemap.zones[myPlayer.location].answer:
+        if player_ans.lower().strip() == zones[myPlayer.location].answer:
             print("Congratulations that is correct!")
-            zonemap.zones[myPlayer.location].solved = True
+            zones[myPlayer.location].solved = True
             time.sleep(4)
             win_condition()
         else:
@@ -211,10 +211,11 @@ def riddles():
 
 def win_condition():
     all_solved = True
-    for zone in zonemap.zones.values():
-        if zone.solved == False:
-            all_solved = False
-        main_game_loop()
+    for zone in zones:
+        for value in zones.values():
+            if value.solved == False:
+                all_solved = False
+            main_game_loop()
 
     if all_solved == True:
         print('Congratulations you have won!')
