@@ -172,7 +172,7 @@ def player_move():
 
     while True:
         new_location = getattr(zones[myPlayer.location], dest)
-        if new_location[0] == '':
+        if new_location == '':
             print("Invalid move")
             player_move()
         else:
