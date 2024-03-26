@@ -10,15 +10,18 @@ from zonemap import zones
 from playerenemyclasses import *
 
 DEBUG = False
+
 def clear():
     """ An OS agnostic command to clear the screen. """
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def typewriter(message, delay=0.05):
     for char in message:
         sys.stdout.write(char)
         sys.stdout.flush()
         time.sleep(delay)
+
 
 def title_screen():
     clear()
@@ -161,6 +164,7 @@ def prompt():
             input("Unknown selection, try again.")
         break
 
+
 def player_move():
     print('Directions: ', 'n','e','s','w')
     dest = input("Where would you like to move to? \n" ">").strip().lower()
@@ -178,6 +182,7 @@ def player_move():
         else:
             movement_handler(new_location)
         break
+
 
 def movement_handler(dest):
     print("You have moved to " + dest + ".")
@@ -204,6 +209,7 @@ def player_look():
             else:
                 print('That is not valid input')
         break
+
 
 def riddles():
     print(zones[myPlayer.location].riddle)

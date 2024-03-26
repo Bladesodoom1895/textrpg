@@ -1,4 +1,4 @@
-##### Player Setup #####
+##### Player Class #####
 class player:
     def __init__(self):
         self.name = ''
@@ -13,7 +13,7 @@ class player:
 myPlayer = player()
 
 
-##### Enemy Setup #####
+##### Enemy Class #####
 class enemy:
     def __init__(self):
         self.name = ''

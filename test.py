@@ -25,6 +25,7 @@
 
 letters = ['a', 'b', 'c', 'd']
 numbers = ['1', '2', '3', '4']
+
 # new = zip(letters, numbers)
 new_zones = []
 for letter in letters:
@@ -33,4 +34,4 @@ for letter in letters:
 
 for location in new_zones:
     if location is not "b2":
-        zones[location].solved = True
+        new_zones[location].solved = True

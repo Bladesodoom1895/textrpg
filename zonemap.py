@@ -38,7 +38,8 @@ class Zone:
 with open('riddles.txt', 'r', encoding="utf8") as r:
     riddle_lines = r.readlines()
 
-# cleaning up lines to remove empty lines and white space, list comprehension is kick ass
+# cleaning up lines to remove empty lines and white space
+# list comprehension is kick ass
 riddle_lines = [i.strip() for i in riddle_lines if i.strip() != ""]
 
 # random sort
@@ -51,11 +52,12 @@ zones = {}
 for l in letters:
     for n in numbers:
         zones[l + n] = Zone(name=f'{l}{n}', solved=False)
-        # pulls last entry in riddle_lines and puts it in zone
+        # pulls last entry in riddle_lines and puts it in zones
+        # removing the used riddle and answer
         zones[l + n].riddle, zones[l + n].answer = riddle_lines.pop().split(': ')
 
 
-
+# unsure how to do this better yet.
 # a1
 zones['a1'].description = "zone a1's description"
 zones['a1'].look = "zone a1's look"
