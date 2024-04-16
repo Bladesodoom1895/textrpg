@@ -1,4 +1,7 @@
 ##### Player Class #####
+from typing import Any
+
+
 class Player:
     def __init__(self):
         self.name = ''
@@ -29,7 +32,7 @@ class Priest(Player):
 
 
 ##### Enemy Class #####
-class enemy:
+class Enemy:
     def __init__(self):
         self.name = ''
         self.hp = 0

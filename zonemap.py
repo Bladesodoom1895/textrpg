@@ -39,7 +39,6 @@ with open('riddles.txt', 'r', encoding="utf8") as r:
     riddle_lines = r.readlines()
 
 # cleaning up lines to remove empty lines and white space
-# list comprehension is kick ass
 riddle_lines = [i.strip() for i in riddle_lines if i.strip() != ""]
 
 # random sort

@@ -166,6 +166,9 @@ def prompt():
 
 
 def player_move():
+    # Get only available movement directions
+    # Based on current location
+    # only allow those options as choices
     print('Directions: ', 'n','e','s','w')
     dest = input("Where would you like to move to? \n" ">").strip().lower()
 
