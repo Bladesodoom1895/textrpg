@@ -10,6 +10,7 @@ from zonemap import zones
 from playerenemyclasses import *
 
 DEBUG = False
+myPlayer = Player()
 
 def clear():
     """ An OS agnostic command to clear the screen. """
@@ -24,7 +25,6 @@ def typewriter(message, delay=0.05):
 
 
 def title_screen():
-    myPlayer = Player()
     clear()
     print('#' * 28)
     print('Welcome to Warriors Text RPG')
@@ -48,7 +48,6 @@ def help_menu():
     title_screen()
 
 
-##### Title Screen #####
 def title_screen_selections():
     if DEBUG:
         setup_game()
@@ -74,13 +73,13 @@ def setup_game():
         myPlayer.job = "Mage"
         print(f"{myPlayer.name=}, {myPlayer.job=}")
         main_game_loop()
-    ##### Name Handling #####
+
     nameq = "Hello, what's your name?\n"
     typewriter(nameq)
     player_name = input("> ")
     myPlayer.name = player_name
 
-    ##### Job Handling #####
+
     jobq = "What role do you want to play?\n"
     typewriter(jobq, delay=0.03)
     jobq2 = "(You can play as warrior, priest, or mage)\n"
@@ -95,7 +94,7 @@ def setup_game():
             print('You are now a ' + player_job + '!\n')
         break
 
-    ##### Player Stats #####
+
     if myPlayer.job == 'warrior':
         myPlayer.hp = 120
         myPlayer.mp = 20
@@ -107,7 +106,7 @@ def setup_game():
         myPlayer.mp = 60
     
 
-    ##### Introduction #####
+
     question3 = "Welcome, " + player_name + " the " + player_job + '.\n'
     typewriter(question3, delay=0.03)
 
@@ -128,7 +127,7 @@ def setup_game():
     main_game_loop()
 
 
-#### Game Functionality #####
+
 def main_game_loop():
     while myPlayer.game_over is False:
         print_location()
@@ -138,7 +137,7 @@ def main_game_loop():
         title_screen()
 
 
-#### Game Interactivity #####
+
 def print_location():
     current_zone = zones[myPlayer.location]
     print("\n" + ("#" * (14 + len(current_zone.name))))
