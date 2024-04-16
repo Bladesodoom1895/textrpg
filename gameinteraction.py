@@ -24,6 +24,7 @@ def typewriter(message, delay=0.05):
 
 
 def title_screen():
+    myPlayer = Player()
     clear()
     print('#' * 28)
     print('Welcome to Warriors Text RPG')

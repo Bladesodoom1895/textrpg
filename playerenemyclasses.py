@@ -1,5 +1,5 @@
 ##### Player Class #####
-class player:
+class Player:
     def __init__(self):
         self.name = ''
         self.job = ''
@@ -10,7 +10,22 @@ class player:
         self.game_over = False
 
 
-myPlayer = player()
+class Mage(Player):
+    def __init__(self):
+        self.hp = 80
+        self.mp = 120
+
+
+class Warrior(Player):
+    def __init__(self):
+        self.hp = 120
+        self.mp = 80
+
+
+class Priest(Player):
+    def __init__(self):
+        self.hp = 100
+        self.mp = 100
 
 
 ##### Enemy Class #####
